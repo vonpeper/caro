@@ -1,0 +1,48 @@
+# Forzar redirección HTTPS y HSTS
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Cabeceras de Seguridad Premium (Defensa en Profundidad)
+<IfModule mod_headers.c>
+    # Prevenir Clickjacking (Secuestración de clics)
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # Prevenir MIME-type Sniffing (Secuestro de tipos de contenido)
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Referrer Policy seguro para proteger la privacidad del usuario
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions Policy para desactivar APIs de hardware no utilizadas (reducción de superficie de ataque)
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), usb=(), midi=(), payment=()"
+    
+    # Strict-Transport-Security (HSTS) - Forzar HTTPS por 1 año incluyendo subdominios
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # Content Security Policy (CSP) seguro para proteger contra XSS e inyecciones de scripts
+    # Permite 'self', Google Fonts, Google Tag Manager y Google Analytics.
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net; frame-src 'self' https://www.googletagmanager.com; base-uri 'none'; form-action 'self';"
+</IfModule>
+
+# Configuración de compresión Gzip para mejorar el rendimiento y velocidad
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json image/svg+xml
+</IfModule>
+
+# Caché de Navegador para assets estáticos (Optimización de velocidad SEO)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
