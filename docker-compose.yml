@@ -1,0 +1,53 @@
+services:
+  app:
+    build: .
+    image: caro-fisioterapia:latest
+    container_name: caro-fisioterapia-app
+    restart: unless-stopped
+
+    # 1. Limites de Recursos
+    mem_limit: 256m
+    cpus: 0.5
+
+    # 2. Healthcheck Obligatorio
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+    # 3. Logs Rotados
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # 4. Traefik (Dominio y SSL Automatico)
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=dokploy-network"
+      
+      # Redireccion HTTP -> HTTPS
+      - "traefik.http.routers.caro-fisioterapia-http.rule=Host(`caro.prosuite.pro`)"
+      - "traefik.http.routers.caro-fisioterapia-http.entrypoints=web"
+      - "traefik.http.routers.caro-fisioterapia-http.middlewares=redirect-to-https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      
+      # Endpoint HTTPS Seguro
+      - "traefik.http.routers.caro-fisioterapia.rule=Host(`caro.prosuite.pro`)"
+      - "traefik.http.routers.caro-fisioterapia.entrypoints=websecure"
+      - "traefik.http.routers.caro-fisioterapia.tls=true"
+      - "traefik.http.routers.caro-fisioterapia.tls.certresolver=letsencrypt"
+      
+      # Puerto interno del contenedor
+      - "traefik.http.services.caro-fisioterapia.loadbalancer.server.port=80"
+
+    # 5. Red Dokploy
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
