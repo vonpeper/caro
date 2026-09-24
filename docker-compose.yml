@@ -1,7 +1,8 @@
 services:
   app:
     build: .
-    image: caro-fisioterapia:latest
+    image: ghcr.io/vonpeper/caro:latest
+    pull_policy: always
     container_name: caro-fisioterapia-app
     restart: unless-stopped
 
@@ -32,8 +33,8 @@ services:
       # Redireccion HTTP -> HTTPS
       - "traefik.http.routers.caro-fisioterapia-http.rule=Host(`caro.prosuite.pro`)"
       - "traefik.http.routers.caro-fisioterapia-http.entrypoints=web"
-      - "traefik.http.routers.caro-fisioterapia-http.middlewares=redirect-to-https"
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.caro-fisioterapia-http.middlewares=caro-redirect"
+      - "traefik.http.middlewares.caro-redirect.redirectscheme.scheme=https"
       
       # Endpoint HTTPS Seguro
       - "traefik.http.routers.caro-fisioterapia.rule=Host(`caro.prosuite.pro`)"

@@ -9,6 +9,7 @@ Este proyecto se despliega en un VPS compartido administrado por Dokploy y Traef
 3. NUNCA usar el puerto SSH 22 (el puerto SSH es 2226).
 4. NUNCA modificar archivos de producción en `/home/` o directamente en el VPS.
 5. NUNCA reutilizar nombres de routers o services de Traefik existentes.
+6. NUNCA intentar conexiones SSH o escaneos manuales desde la máquina local (evitar baneos por fail2ban). Todo despliegue se gestiona vía GitHub Actions o Dokploy.
 
 ## Requisitos de Contenedor:
 - Toda app corre en Docker con imagen propia / multi-stage build.
