@@ -1,0 +1,35 @@
+[Unit]
+Description=caro — caro.prosuite.pro (sitio estatico nginx)
+After=network-online.target traefik.service
+Wants=network-online.target
+
+[Container]
+ContainerName=caro
+Image=ghcr.io/vonpeper/caro:latest
+Pull=newer
+AutoUpdate=registry
+Network=prosuite.network
+
+HealthCmd=wget -q --spider http://127.0.0.1/ || exit 1
+HealthInterval=30s
+HealthTimeout=5s
+HealthStartPeriod=10s
+HealthRetries=3
+
+PodmanArgs=--memory=128m --memory-swap=128m --cpus=0.25
+
+Label=traefik.enable=true
+Label=traefik.docker.network=prosuite
+Label=traefik.http.services.caro.loadbalancer.server.port=80
+Label=traefik.http.routers.caro.rule=Host(`caro.prosuite.pro`)
+Label=traefik.http.routers.caro.entrypoints=websecure
+Label=traefik.http.routers.caro.tls.certresolver=letsencrypt-dns
+Label=traefik.http.routers.caro.service=caro
+Label=org.prosuite.stack=caro
+
+[Service]
+Restart=always
+TimeoutStartSec=180
+
+[Install]
+WantedBy=multi-user.target default.target
