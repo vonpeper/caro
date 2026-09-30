@@ -681,42 +681,192 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // 11. GALLERY SWIPER INITIALIZATION
+    // 11. MASONRY GALLERY & LIGHTBOX FUNCTIONALITY
     // ==========================================================================
-    if (document.querySelector('.gallery-swiper') && typeof Swiper !== 'undefined') {
-        new Swiper('.gallery-swiper', {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            grabCursor: true,
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-            },
-            pagination: {
-                el: '.gallery-pagination',
-                clickable: true,
-                dynamicBullets: true,
-            },
-            navigation: {
-                nextEl: '.gallery-btn-next',
-                prevEl: '.gallery-btn-prev',
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                },
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 24,
-                },
-                1280: {
-                    slidesPerView: 4,
-                    spaceBetween: 28,
+    const masonryGallery = document.getElementById('masonry-gallery');
+    if (masonryGallery) {
+        const filterBtns = document.querySelectorAll('.gallery-filters .filter-btn');
+        const allItems = Array.from(masonryGallery.querySelectorAll('.masonry-item'));
+        const toggleBtn = document.getElementById('gallery-toggle-btn');
+        const loadMoreText = document.getElementById('load-more-text');
+        
+        let isExpanded = false;
+        let activeFilter = 'all';
+
+        // Update items visibility according to filter and expansion state
+        function updateGalleryVisibility() {
+            let visibleCount = 0;
+            const limit = isExpanded ? Infinity : 16;
+
+            allItems.forEach(item => {
+                const itemCat = item.getAttribute('data-category');
+                const matchesFilter = (activeFilter === 'all' || itemCat === activeFilter);
+
+                if (!matchesFilter) {
+                    item.style.display = 'none';
+                } else {
+                    if (visibleCount < limit) {
+                        item.style.display = 'block';
+                        item.classList.remove('is-hidden');
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.add('is-hidden');
+                    }
+                    visibleCount++;
+                }
+            });
+
+            // Update load more button
+            if (toggleBtn && loadMoreText) {
+                const totalMatching = allItems.filter(item => {
+                    const cat = item.getAttribute('data-category');
+                    return activeFilter === 'all' || cat === activeFilter;
+                }).length;
+
+                if (totalMatching <= 16) {
+                    toggleBtn.style.display = 'none';
+                } else {
+                    toggleBtn.style.display = 'inline-flex';
+                    if (isExpanded) {
+                        loadMoreText.textContent = 'Ver menos fotos';
+                        toggleBtn.classList.add('expanded');
+                    } else {
+                        const remaining = totalMatching - 16;
+                        loadMoreText.textContent = `Ver más fotografías (${remaining} fotos más)`;
+                        toggleBtn.classList.remove('expanded');
+                    }
                 }
             }
+        }
+
+        // Filter button clicks
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.getAttribute('data-filter');
+                updateGalleryVisibility();
+            });
+        });
+
+        // Toggle load more / show less
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                isExpanded = !isExpanded;
+                updateGalleryVisibility();
+                if (!isExpanded) {
+                    const gallerySection = document.getElementById('gallery');
+                    if (gallerySection) {
+                        gallerySection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        }
+
+        // Initialize visibility
+        updateGalleryVisibility();
+
+        // ----------------------------------------------------------------------
+        // LIGHTBOX MODAL LOGIC
+        // ----------------------------------------------------------------------
+        const lightbox = document.getElementById('gallery-lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+
+        let currentLightboxIndex = -1;
+        let activeImagesList = [];
+
+        function getVisibleGalleryImages() {
+            return allItems.filter(item => item.style.display !== 'none').map(item => {
+                const img = item.querySelector('img');
+                const badge = item.querySelector('.masonry-badge');
+                return {
+                    src: img ? img.getAttribute('src') : '',
+                    alt: img ? img.getAttribute('alt') : '',
+                    caption: badge ? badge.textContent : (img ? img.getAttribute('alt') : '')
+                };
+            });
+        }
+
+        function openLightbox(index) {
+            activeImagesList = getVisibleGalleryImages();
+            if (activeImagesList.length === 0 || index < 0 || index >= activeImagesList.length) return;
+            
+            currentLightboxIndex = index;
+            updateLightboxContent();
+
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightboxContent() {
+            if (!activeImagesList[currentLightboxIndex]) return;
+            const data = activeImagesList[currentLightboxIndex];
+            lightboxImg.src = data.src;
+            lightboxImg.alt = data.alt;
+            lightboxCaption.textContent = `${data.caption} (${currentLightboxIndex + 1} de ${activeImagesList.length})`;
+        }
+
+        function prevLightboxImage() {
+            if (activeImagesList.length <= 1) return;
+            currentLightboxIndex = (currentLightboxIndex - 1 + activeImagesList.length) % activeImagesList.length;
+            updateLightboxContent();
+        }
+
+        function nextLightboxImage() {
+            if (activeImagesList.length <= 1) return;
+            currentLightboxIndex = (currentLightboxIndex + 1) % activeImagesList.length;
+            updateLightboxContent();
+        }
+
+        // Attach click listeners to cards
+        allItems.forEach(item => {
+            const card = item.querySelector('.masonry-card');
+            if (card) {
+                card.addEventListener('click', () => {
+                    const currentVisible = getVisibleGalleryImages();
+                    const clickedImg = item.querySelector('img');
+                    if (clickedImg) {
+                        const clickedSrc = clickedImg.getAttribute('src');
+                        const idx = currentVisible.findIndex(img => img.src === clickedSrc);
+                        if (idx !== -1) {
+                            openLightbox(idx);
+                        }
+                    }
+                });
+            }
+        });
+
+        // Controls
+        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+        if (lightboxPrev) lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); prevLightboxImage(); });
+        if (lightboxNext) lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); nextLightboxImage(); });
+
+        // Click on background closes lightbox
+        if (lightbox) {
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+                    closeLightbox();
+                }
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('is-open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevLightboxImage();
+            if (e.key === 'ArrowRight') nextLightboxImage();
         });
     }
     
