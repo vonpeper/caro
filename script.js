@@ -681,78 +681,157 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // 11. PREMIUM HORIZONTAL SCROLL GALLERY & LIGHTBOX
+    // 11. THEATER STAGE & FILMSTRIP GALLERY CONTROLLER
     // ==========================================================================
-    const scrollTrack = document.getElementById('gallery-scroll-track');
-    if (scrollTrack) {
+    const theaterViewport = document.getElementById('theater-viewport');
+    if (theaterViewport) {
+        const theaterMainImg = document.getElementById('theater-main-img');
+        const theaterBadge = document.getElementById('theater-badge');
+        const theaterTitle = document.getElementById('theater-title');
+        const theaterDesc = document.getElementById('theater-desc');
+        const theaterCounter = document.getElementById('theater-counter');
+        const theaterPrevBtn = document.getElementById('theater-prev-btn');
+        const theaterNextBtn = document.getElementById('theater-next-btn');
+        const theaterFullscreenBtn = document.getElementById('theater-fullscreen-btn');
+
+        const filmstripTrack = document.getElementById('gallery-filmstrip-track');
+        const filmstripPrevBtn = document.getElementById('filmstrip-prev');
+        const filmstripNextBtn = document.getElementById('filmstrip-next');
         const filterBtns = document.querySelectorAll('.gallery-filters .filter-btn');
-        const allCards = Array.from(scrollTrack.querySelectorAll('.gallery-card'));
-        const prevBtn = document.getElementById('gallery-prev-btn');
-        const nextBtn = document.getElementById('gallery-next-btn');
-        const progressBar = document.getElementById('gallery-progress-bar');
-        const currentIdxEl = document.getElementById('gallery-current-idx');
-        const totalIdxEl = document.getElementById('gallery-total-idx');
+        const allThumbs = Array.from(filmstripTrack.querySelectorAll('.filmstrip-thumb'));
 
         let activeFilter = 'all';
-        let isDragging = false;
-        let isMouseDown = false;
-        let startX = 0;
-        let startScrollLeft = 0;
-        let dragDistance = 0;
+        let currentThumb = allThumbs[0];
 
-        // Get currently visible cards
-        function getVisibleCards() {
-            return allCards.filter(card => !card.classList.contains('is-hidden'));
+        // Return array of visible thumbs according to active filter
+        function getVisibleThumbs() {
+            return allThumbs.filter(thumb => !thumb.classList.contains('is-hidden'));
         }
 
-        // Update progress bar and counter
-        function updateProgressAndCounter() {
-            const maxScroll = scrollTrack.scrollWidth - scrollTrack.clientWidth;
-            const progress = maxScroll > 0 ? (scrollTrack.scrollLeft / maxScroll) * 100 : 0;
-            
-            if (progressBar) {
-                progressBar.style.width = `${Math.max(4, Math.min(100, progress))}%`;
+        // Set active photo on the theater stage
+        function setActivePhoto(thumb, smoothTransition = true) {
+            if (!thumb) return;
+            currentThumb = thumb;
+
+            // Highlight in filmstrip
+            allThumbs.forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+
+            const src = thumb.getAttribute('data-src');
+            const title = thumb.getAttribute('data-title');
+            const badge = thumb.getAttribute('data-badge');
+            const desc = thumb.getAttribute('data-desc');
+
+            const visible = getVisibleThumbs();
+            const currentPos = visible.indexOf(thumb) + 1;
+            const total = visible.length;
+
+            if (smoothTransition && theaterMainImg) {
+                theaterMainImg.style.opacity = '0.35';
+                setTimeout(() => {
+                    theaterMainImg.src = src;
+                    theaterMainImg.alt = `${title} - Carolina Villegas Fisioterapia`;
+                    theaterMainImg.style.opacity = '1';
+                }, 140);
+            } else if (theaterMainImg) {
+                theaterMainImg.src = src;
+                theaterMainImg.alt = `${title} - Carolina Villegas Fisioterapia`;
             }
 
-            const visible = getVisibleCards();
+            if (theaterBadge) theaterBadge.textContent = badge;
+            if (theaterTitle) theaterTitle.textContent = title;
+            if (theaterDesc) theaterDesc.textContent = desc;
+            if (theaterCounter) {
+                theaterCounter.textContent = `Foto ${String(currentPos).padStart(2, '0')} de ${String(total).padStart(2, '0')}`;
+            }
+
+            // Auto-scroll the active thumbnail into view
+            if (filmstripTrack) {
+                const trackRect = filmstripTrack.getBoundingClientRect();
+                const thumbRect = thumb.getBoundingClientRect();
+                const isOffLeft = thumbRect.left < trackRect.left;
+                const isOffRight = thumbRect.right > trackRect.right;
+
+                if (isOffLeft || isOffRight) {
+                    thumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            }
+        }
+
+        // Navigate prev / next in theater
+        function navigateTheater(direction) {
+            const visible = getVisibleThumbs();
             if (visible.length === 0) return;
 
-            // Estimate current card by scroll offset
-            const firstCard = visible[0];
-            const cardWidth = firstCard ? (firstCard.offsetWidth + 22) : 342;
-            const currentIdx = Math.min(visible.length, Math.max(1, Math.round(scrollTrack.scrollLeft / cardWidth) + 1));
+            let currentIndex = visible.indexOf(currentThumb);
+            if (currentIndex === -1) currentIndex = 0;
 
-            if (currentIdxEl) {
-                currentIdxEl.textContent = String(currentIdx).padStart(2, '0');
-            }
+            let nextIndex = (currentIndex + direction + visible.length) % visible.length;
+            setActivePhoto(visible[nextIndex], true);
         }
 
-        // Filter cards
-        function applyFilter(filter) {
-            activeFilter = filter;
-            let visibleCount = 0;
+        if (theaterPrevBtn) {
+            theaterPrevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navigateTheater(-1);
+            });
+        }
 
-            allCards.forEach(card => {
-                const cat = card.getAttribute('data-category');
-                const matches = (filter === 'all' || cat === filter);
+        if (theaterNextBtn) {
+            theaterNextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navigateTheater(1);
+            });
+        }
+
+        // Filmstrip Mini navigation buttons
+        if (filmstripPrevBtn && filmstripTrack) {
+            filmstripPrevBtn.addEventListener('click', () => {
+                filmstripTrack.scrollBy({ left: -260, behavior: 'smooth' });
+            });
+        }
+
+        if (filmstripNextBtn && filmstripTrack) {
+            filmstripNextBtn.addEventListener('click', () => {
+                filmstripTrack.scrollBy({ left: 260, behavior: 'smooth' });
+            });
+        }
+
+        // Clicking on thumbnails
+        allThumbs.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                setActivePhoto(thumb, true);
+            });
+        });
+
+        // Filter button clicks
+        function applyFilter(category) {
+            activeFilter = category;
+            allThumbs.forEach(thumb => {
+                const cat = thumb.getAttribute('data-category');
+                const matches = (category === 'all' || cat === category);
                 if (matches) {
-                    card.classList.remove('is-hidden');
-                    visibleCount++;
+                    thumb.classList.remove('is-hidden');
                 } else {
-                    card.classList.add('is-hidden');
+                    thumb.classList.add('is-hidden');
                 }
             });
 
-            if (totalIdxEl) {
-                totalIdxEl.textContent = String(visibleCount).padStart(2, '0');
+            const visible = getVisibleThumbs();
+            if (visible.length > 0) {
+                // If current thumb is not visible anymore, select the first visible thumb
+                if (!visible.includes(currentThumb)) {
+                    setActivePhoto(visible[0], true);
+                } else {
+                    setActivePhoto(currentThumb, false);
+                }
             }
 
-            // Scroll back to start
-            scrollTrack.scrollTo({ left: 0, behavior: 'smooth' });
-            setTimeout(updateProgressAndCounter, 300);
+            if (filmstripTrack) {
+                filmstripTrack.scrollTo({ left: 0, behavior: 'smooth' });
+            }
         }
 
-        // Filter buttons click
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => {
@@ -765,83 +844,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Navigation buttons (Prev / Next)
-        function getScrollStep() {
-            const visible = getVisibleCards();
-            if (visible.length > 0) {
-                return visible[0].offsetWidth + 22;
-            }
-            return 342;
-        }
-
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                const step = getScrollStep();
-                scrollTrack.scrollBy({ left: -step, behavior: 'smooth' });
-            });
-        }
-
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                const step = getScrollStep();
-                scrollTrack.scrollBy({ left: step, behavior: 'smooth' });
-            });
-        }
-
-        // Mouse Drag to Scroll (Desktop)
-        scrollTrack.addEventListener('mousedown', (e) => {
-            isMouseDown = true;
-            isDragging = false;
-            dragDistance = 0;
-            startX = e.pageX - scrollTrack.offsetLeft;
-            startScrollLeft = scrollTrack.scrollLeft;
-            scrollTrack.classList.add('is-dragging');
-        });
-
-        window.addEventListener('mouseup', () => {
-            if (isMouseDown) {
-                isMouseDown = false;
-                scrollTrack.classList.remove('is-dragging');
-                setTimeout(() => { isDragging = false; }, 60);
-            }
-        });
-
-        scrollTrack.addEventListener('mousemove', (e) => {
-            if (!isMouseDown) return;
-            const x = e.pageX - scrollTrack.offsetLeft;
-            const walk = (x - startX) * 1.4;
-            dragDistance = Math.abs(x - startX);
-            if (dragDistance > 6) {
-                isDragging = true;
-            }
-            scrollTrack.scrollLeft = startScrollLeft - walk;
-        });
-
-        // Mouse Wheel Horizontal Scroll (Smooth & non-blocking at edges)
-        scrollTrack.addEventListener('wheel', (e) => {
-            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-                const maxScroll = scrollTrack.scrollWidth - scrollTrack.clientWidth;
-                const canScrollRight = e.deltaY > 0 && scrollTrack.scrollLeft < maxScroll - 2;
-                const canScrollLeft = e.deltaY < 0 && scrollTrack.scrollLeft > 2;
-
-                if (canScrollRight || canScrollLeft) {
-                    e.preventDefault();
-                    scrollTrack.scrollLeft += e.deltaY;
-                }
-            }
-        }, { passive: false });
-
-        // Scroll event listener for progress bar
-        scrollTrack.addEventListener('scroll', updateProgressAndCounter, { passive: true });
-
-        // Initialize total count
-        if (totalIdxEl) {
-            totalIdxEl.textContent = String(allCards.length).padStart(2, '0');
-        }
-        updateProgressAndCounter();
-
         // ----------------------------------------------------------------------
-        // LIGHTBOX MODAL LOGIC
+        // LIGHTBOX MODAL INTEGRATION
         // ----------------------------------------------------------------------
         const lightbox = document.getElementById('gallery-lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
@@ -854,13 +858,11 @@ document.addEventListener('DOMContentLoaded', () => {
         let activeImagesList = [];
 
         function getVisibleGalleryImages() {
-            return getVisibleCards().map(card => {
-                const img = card.querySelector('img');
-                const badge = card.querySelector('.gallery-card-badge');
+            return getVisibleThumbs().map(thumb => {
                 return {
-                    src: img ? img.getAttribute('src') : '',
-                    alt: img ? img.getAttribute('alt') : '',
-                    caption: badge ? badge.textContent : (img ? img.getAttribute('alt') : '')
+                    src: thumb.getAttribute('data-src'),
+                    alt: thumb.getAttribute('data-title'),
+                    caption: `${thumb.getAttribute('data-title')} — ${thumb.getAttribute('data-desc')}`
                 };
             });
         }
@@ -895,32 +897,45 @@ document.addEventListener('DOMContentLoaded', () => {
             if (activeImagesList.length <= 1) return;
             currentLightboxIndex = (currentLightboxIndex - 1 + activeImagesList.length) % activeImagesList.length;
             updateLightboxContent();
+            // Sync with theater
+            const visible = getVisibleThumbs();
+            if (visible[currentLightboxIndex]) {
+                setActivePhoto(visible[currentLightboxIndex], false);
+            }
         }
 
         function nextLightboxImage() {
             if (activeImagesList.length <= 1) return;
             currentLightboxIndex = (currentLightboxIndex + 1) % activeImagesList.length;
             updateLightboxContent();
+            // Sync with theater
+            const visible = getVisibleThumbs();
+            if (visible[currentLightboxIndex]) {
+                setActivePhoto(visible[currentLightboxIndex], false);
+            }
         }
 
-        // Attach click listeners to cards (ignoring drags)
-        allCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                if (isDragging) {
-                    e.preventDefault();
-                    return;
-                }
-                const currentVisible = getVisibleGalleryImages();
-                const clickedImg = card.querySelector('img');
-                if (clickedImg) {
-                    const clickedSrc = clickedImg.getAttribute('src');
-                    const idx = currentVisible.findIndex(img => img.src === clickedSrc);
-                    if (idx !== -1) {
-                        openLightbox(idx);
-                    }
+        // Fullscreen HD button opens lightbox for active photo
+        if (theaterFullscreenBtn) {
+            theaterFullscreenBtn.addEventListener('click', () => {
+                const visible = getVisibleThumbs();
+                const idx = visible.indexOf(currentThumb);
+                if (idx !== -1) {
+                    openLightbox(idx);
                 }
             });
-        });
+        }
+
+        // Clicking on theater image also opens lightbox
+        if (theaterMainImg) {
+            theaterMainImg.addEventListener('click', () => {
+                const visible = getVisibleThumbs();
+                const idx = visible.indexOf(currentThumb);
+                if (idx !== -1) {
+                    openLightbox(idx);
+                }
+            });
+        }
 
         // Lightbox buttons
         if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
@@ -935,13 +950,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Keyboard navigation
+        // Keyboard navigation (arrows navigate lightbox if open, otherwise navigate theater stage!)
         document.addEventListener('keydown', (e) => {
-            if (!lightbox || !lightbox.classList.contains('is-open')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') prevLightboxImage();
-            if (e.key === 'ArrowRight') nextLightboxImage();
+            if (lightbox && lightbox.classList.contains('is-open')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevLightboxImage();
+                if (e.key === 'ArrowRight') nextLightboxImage();
+            } else {
+                // If user is focused on the page or viewing gallery
+                if (e.key === 'ArrowLeft') navigateTheater(-1);
+                if (e.key === 'ArrowRight') navigateTheater(1);
+            }
         });
+
+        // Initialize active state
+        if (allThumbs.length > 0) {
+            setActivePhoto(allThumbs[0], false);
+        }
     }
     
 });
