@@ -365,464 +365,812 @@
                 </div>
             </div>
         </section>
-        <!-- GALERÍA MASONRY DE INSTALACIONES Y TERAPIAS -->
+                <!-- GALERÍA SHOWCASE SCROLL PREMIUM DE INSTALACIONES Y TERAPIAS -->
         <section id="gallery" class="gallery-section section-padding">
             <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-subtitle">Nuestras Instalaciones y Sesiones</span>
-                    <h2 class="section-title">Galería de Espacios y Atención</h2>
-                    <p class="section-description">
-                        Conoce nuestras instalaciones profesionales, equipos terapéuticos de vanguardia y el ambiente cálido donde transformamos tu bienestar.
-                    </p>
-                    
-                    <!-- Filtros de categoría -->
-                    <div class="gallery-filters">
-                        <button class="filter-btn active" data-filter="all">Todas las Fotos</button>
-                        <button class="filter-btn" data-filter="atencion">Atención y Terapia</button>
-                        <button class="filter-btn" data-filter="instalaciones">Instalaciones</button>
-                        <button class="filter-btn" data-filter="rehabilitacion">Rehabilitación</button>
+                <div class="gallery-header-wrapper">
+                    <div class="section-header text-center">
+                        <span class="section-subtitle">Instalaciones & Espacios Clínicos</span>
+                        <h2 class="section-title">Galería de Espacios y Atención</h2>
+                        <p class="section-description">
+                            Conoce nuestras instalaciones profesionales, equipos terapéuticos de vanguardia y el ambiente cálido diseñado para tu pronta recuperación.
+                        </p>
+                    </div>
+
+                    <!-- Barra de herramientas: Filtros y Controles de Navegación -->
+                    <div class="gallery-toolbar">
+                        <div class="gallery-filters" role="tablist" aria-label="Filtrar fotografías">
+                            <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+                                <span>Todas las Fotos</span>
+                            </button>
+                            <button class="filter-btn" data-filter="atencion" role="tab" aria-selected="false">
+                                <span>Atención y Terapia</span>
+                            </button>
+                            <button class="filter-btn" data-filter="instalaciones" role="tab" aria-selected="false">
+                                <span>Instalaciones</span>
+                            </button>
+                            <button class="filter-btn" data-filter="rehabilitacion" role="tab" aria-selected="false">
+                                <span>Rehabilitación</span>
+                            </button>
+                        </div>
+
+                        <div class="gallery-navigation-controls">
+                            <div class="gallery-counter-badge" id="gallery-counter">
+                                <span class="counter-label">Foto</span>
+                                <span id="gallery-current-idx" class="counter-current">01</span>
+                                <span class="counter-sep">/</span>
+                                <span id="gallery-total-idx" class="counter-total">39</span>
+                            </div>
+                            <div class="gallery-nav-buttons">
+                                <button class="gallery-nav-btn prev" id="gallery-prev-btn" aria-label="Fotografía anterior" title="Anterior">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+                                <button class="gallery-nav-btn next" id="gallery-next-btn" aria-label="Siguiente fotografía" title="Siguiente">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Masonry Grid -->
-                <div class="masonry-gallery" id="masonry-gallery">
-                        <div class="masonry-item" data-category="atencion" data-index="0">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648341_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Atención y Valoración</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="instalaciones" data-index="1">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648342_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Instalaciones y Equipo</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="rehabilitacion" data-index="2">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648343_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Rehabilitación Activa</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="atencion" data-index="3">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648344_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Terapia Especializada</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="atencion" data-index="4">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648345_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Atención y Valoración</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="instalaciones" data-index="5">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648346_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Instalaciones y Equipo</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="rehabilitacion" data-index="6">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648348_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Rehabilitación Activa</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="atencion" data-index="7">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648349_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Terapia Especializada</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="atencion" data-index="8">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648350_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Atención y Valoración</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="instalaciones" data-index="9">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648351_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Instalaciones y Equipo</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="rehabilitacion" data-index="10">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648352_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Rehabilitación Activa</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="atencion" data-index="11">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648353_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Terapia Especializada</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="atencion" data-index="12">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648354_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Atención y Valoración</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="instalaciones" data-index="13">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648355_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Instalaciones y Equipo</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="rehabilitacion" data-index="14">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648356_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Rehabilitación Activa</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item" data-category="atencion" data-index="15">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648357_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Terapia Especializada</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="atencion" data-index="16">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648358_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Atención y Valoración</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="instalaciones" data-index="17">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648359_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Instalaciones y Equipo</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="rehabilitacion" data-index="18">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648360_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Rehabilitación Activa</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="atencion" data-index="19">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648361_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Terapia Especializada</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="atencion" data-index="20">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648362_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Atención y Valoración</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="instalaciones" data-index="21">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648363_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Instalaciones y Equipo</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="rehabilitacion" data-index="22">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648365_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Rehabilitación Activa</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="atencion" data-index="23">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648366_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Terapia Especializada</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="atencion" data-index="24">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648367_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Atención y Valoración</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="instalaciones" data-index="25">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648368_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Instalaciones y Equipo</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="rehabilitacion" data-index="26">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648369_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Rehabilitación Activa</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="atencion" data-index="27">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648370_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Terapia Especializada</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="atencion" data-index="28">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648371_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Atención y Valoración</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="instalaciones" data-index="29">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648372_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Instalaciones y Equipo</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="rehabilitacion" data-index="30">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648373_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Rehabilitación Activa</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="atencion" data-index="31">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648374_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Terapia Especializada</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="atencion" data-index="32">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648375_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Atención y Valoración</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="instalaciones" data-index="33">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648376_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Instalaciones y Equipo</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="rehabilitacion" data-index="34">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648377_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Rehabilitación Activa</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="atencion" data-index="35">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648378_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Terapia Especializada</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="atencion" data-index="36">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648379_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Atención y Valoración</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="instalaciones" data-index="37">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648380_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Instalaciones y Equipo</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="masonry-item is-hidden" data-category="rehabilitacion" data-index="38">
-                            <div class="masonry-card">
-                                <img src="assets/photo_4985880676569648381_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy">
-                                <div class="masonry-overlay">
-                                    <div class="masonry-badge">Rehabilitación Activa</div>
-                                    <div class="masonry-zoom-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
+            </div>
 
-                <!-- Botón Ver más -->
-                <div class="gallery-load-more text-center">
-                    <button id="gallery-toggle-btn" class="btn btn-outline-primary btn-load-more">
-                        <span id="load-more-text">Ver más fotografías (23 fotos más)</span>
-                        <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                    </button>
+            <!-- Pista Scroll Horizontal (Scroll Track Showcase) -->
+            <div class="gallery-scroll-container">
+                <div class="gallery-scroll-track" id="gallery-scroll-track" tabindex="0" role="region" aria-label="Carrusel de fotografías de la clínica">
+                    <div class="gallery-card" data-category="atencion" data-index="0">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648341_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Atención y Valoración</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 01</span>
+                                        <h4 class="gallery-card-title">Atención y Valoración</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="instalaciones" data-index="1">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648342_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Instalaciones y Equipo</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 02</span>
+                                        <h4 class="gallery-card-title">Instalaciones y Equipo</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="rehabilitacion" data-index="2">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648343_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Rehabilitación Activa</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 03</span>
+                                        <h4 class="gallery-card-title">Rehabilitación Activa</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="3">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648344_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Terapia Especializada</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 04</span>
+                                        <h4 class="gallery-card-title">Terapia Especializada</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="4">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648345_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Atención y Valoración</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 05</span>
+                                        <h4 class="gallery-card-title">Atención y Valoración</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="instalaciones" data-index="5">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648346_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Instalaciones y Equipo</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 06</span>
+                                        <h4 class="gallery-card-title">Instalaciones y Equipo</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="rehabilitacion" data-index="6">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648348_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Rehabilitación Activa</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 07</span>
+                                        <h4 class="gallery-card-title">Rehabilitación Activa</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="7">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648349_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Terapia Especializada</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 08</span>
+                                        <h4 class="gallery-card-title">Terapia Especializada</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="8">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648350_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Atención y Valoración</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 09</span>
+                                        <h4 class="gallery-card-title">Atención y Valoración</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="instalaciones" data-index="9">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648351_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Instalaciones y Equipo</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 10</span>
+                                        <h4 class="gallery-card-title">Instalaciones y Equipo</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="rehabilitacion" data-index="10">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648352_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Rehabilitación Activa</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 11</span>
+                                        <h4 class="gallery-card-title">Rehabilitación Activa</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="11">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648353_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Terapia Especializada</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 12</span>
+                                        <h4 class="gallery-card-title">Terapia Especializada</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="12">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648354_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Atención y Valoración</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 13</span>
+                                        <h4 class="gallery-card-title">Atención y Valoración</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="instalaciones" data-index="13">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648355_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Instalaciones y Equipo</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 14</span>
+                                        <h4 class="gallery-card-title">Instalaciones y Equipo</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="rehabilitacion" data-index="14">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648356_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Rehabilitación Activa</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 15</span>
+                                        <h4 class="gallery-card-title">Rehabilitación Activa</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="15">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648357_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Terapia Especializada</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 16</span>
+                                        <h4 class="gallery-card-title">Terapia Especializada</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="16">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648358_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Atención y Valoración</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 17</span>
+                                        <h4 class="gallery-card-title">Atención y Valoración</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="instalaciones" data-index="17">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648359_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Instalaciones y Equipo</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 18</span>
+                                        <h4 class="gallery-card-title">Instalaciones y Equipo</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="rehabilitacion" data-index="18">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648360_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Rehabilitación Activa</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 19</span>
+                                        <h4 class="gallery-card-title">Rehabilitación Activa</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="19">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648361_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Terapia Especializada</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 20</span>
+                                        <h4 class="gallery-card-title">Terapia Especializada</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="20">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648362_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Atención y Valoración</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 21</span>
+                                        <h4 class="gallery-card-title">Atención y Valoración</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="instalaciones" data-index="21">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648363_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Instalaciones y Equipo</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 22</span>
+                                        <h4 class="gallery-card-title">Instalaciones y Equipo</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="rehabilitacion" data-index="22">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648365_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Rehabilitación Activa</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 23</span>
+                                        <h4 class="gallery-card-title">Rehabilitación Activa</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="23">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648366_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Terapia Especializada</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 24</span>
+                                        <h4 class="gallery-card-title">Terapia Especializada</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="24">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648367_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Atención y Valoración</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 25</span>
+                                        <h4 class="gallery-card-title">Atención y Valoración</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="instalaciones" data-index="25">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648368_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Instalaciones y Equipo</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 26</span>
+                                        <h4 class="gallery-card-title">Instalaciones y Equipo</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="rehabilitacion" data-index="26">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648369_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Rehabilitación Activa</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 27</span>
+                                        <h4 class="gallery-card-title">Rehabilitación Activa</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="27">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648370_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Terapia Especializada</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 28</span>
+                                        <h4 class="gallery-card-title">Terapia Especializada</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="28">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648371_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Atención y Valoración</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 29</span>
+                                        <h4 class="gallery-card-title">Atención y Valoración</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="instalaciones" data-index="29">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648372_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Instalaciones y Equipo</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 30</span>
+                                        <h4 class="gallery-card-title">Instalaciones y Equipo</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="rehabilitacion" data-index="30">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648373_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Rehabilitación Activa</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 31</span>
+                                        <h4 class="gallery-card-title">Rehabilitación Activa</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="31">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648374_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Terapia Especializada</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 32</span>
+                                        <h4 class="gallery-card-title">Terapia Especializada</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="32">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648375_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Atención y Valoración</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 33</span>
+                                        <h4 class="gallery-card-title">Atención y Valoración</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="instalaciones" data-index="33">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648376_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Instalaciones y Equipo</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 34</span>
+                                        <h4 class="gallery-card-title">Instalaciones y Equipo</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="rehabilitacion" data-index="34">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648377_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Rehabilitación Activa</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 35</span>
+                                        <h4 class="gallery-card-title">Rehabilitación Activa</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="35">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648378_y.jpg" alt="Terapia Especializada - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Terapia Especializada</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 36</span>
+                                        <h4 class="gallery-card-title">Terapia Especializada</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="atencion" data-index="36">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648379_y.jpg" alt="Atención y Valoración - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Atención y Valoración</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 37</span>
+                                        <h4 class="gallery-card-title">Atención y Valoración</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="instalaciones" data-index="37">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648380_y.jpg" alt="Instalaciones y Equipo - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Instalaciones y Equipo</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 38</span>
+                                        <h4 class="gallery-card-title">Instalaciones y Equipo</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-card" data-category="rehabilitacion" data-index="38">
+                        <div class="gallery-card-inner">
+                            <img src="assets/photo_4985880676569648381_y.jpg" alt="Rehabilitación Activa - Carolina Villegas Fisioterapia" loading="lazy" class="gallery-img">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-badge-row">
+                                    <span class="gallery-card-badge">Rehabilitación Activa</span>
+                                </div>
+                                <div class="gallery-card-footer">
+                                    <div class="gallery-card-info">
+                                        <span class="gallery-card-counter">Foto 39</span>
+                                        <h4 class="gallery-card-title">Rehabilitación Activa</h4>
+                                    </div>
+                                    <button class="gallery-card-zoom-btn" aria-label="Ampliar fotografía">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barra de Progreso e Indicador de Interacción -->
+            <div class="container gallery-footer-controls">
+                <div class="gallery-footer-info">
+                    <div class="gallery-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
+                        <span>Arrastra con el mouse o desliza horizontalmente para explorar</span>
+                    </div>
+                    <div class="gallery-progress-wrap" aria-hidden="true">
+                        <div class="gallery-progress-bar" id="gallery-progress-bar"></div>
+                    </div>
                 </div>
             </div>
 

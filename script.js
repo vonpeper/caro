@@ -681,90 +681,164 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // 11. MASONRY GALLERY & LIGHTBOX FUNCTIONALITY
+    // 11. PREMIUM HORIZONTAL SCROLL GALLERY & LIGHTBOX
     // ==========================================================================
-    const masonryGallery = document.getElementById('masonry-gallery');
-    if (masonryGallery) {
+    const scrollTrack = document.getElementById('gallery-scroll-track');
+    if (scrollTrack) {
         const filterBtns = document.querySelectorAll('.gallery-filters .filter-btn');
-        const allItems = Array.from(masonryGallery.querySelectorAll('.masonry-item'));
-        const toggleBtn = document.getElementById('gallery-toggle-btn');
-        const loadMoreText = document.getElementById('load-more-text');
-        
-        let isExpanded = false;
+        const allCards = Array.from(scrollTrack.querySelectorAll('.gallery-card'));
+        const prevBtn = document.getElementById('gallery-prev-btn');
+        const nextBtn = document.getElementById('gallery-next-btn');
+        const progressBar = document.getElementById('gallery-progress-bar');
+        const currentIdxEl = document.getElementById('gallery-current-idx');
+        const totalIdxEl = document.getElementById('gallery-total-idx');
+
         let activeFilter = 'all';
+        let isDragging = false;
+        let isMouseDown = false;
+        let startX = 0;
+        let startScrollLeft = 0;
+        let dragDistance = 0;
 
-        // Update items visibility according to filter and expansion state
-        function updateGalleryVisibility() {
-            let visibleCount = 0;
-            const limit = isExpanded ? Infinity : 16;
+        // Get currently visible cards
+        function getVisibleCards() {
+            return allCards.filter(card => !card.classList.contains('is-hidden'));
+        }
 
-            allItems.forEach(item => {
-                const itemCat = item.getAttribute('data-category');
-                const matchesFilter = (activeFilter === 'all' || itemCat === activeFilter);
+        // Update progress bar and counter
+        function updateProgressAndCounter() {
+            const maxScroll = scrollTrack.scrollWidth - scrollTrack.clientWidth;
+            const progress = maxScroll > 0 ? (scrollTrack.scrollLeft / maxScroll) * 100 : 0;
+            
+            if (progressBar) {
+                progressBar.style.width = `${Math.max(4, Math.min(100, progress))}%`;
+            }
 
-                if (!matchesFilter) {
-                    item.style.display = 'none';
-                } else {
-                    if (visibleCount < limit) {
-                        item.style.display = 'block';
-                        item.classList.remove('is-hidden');
-                    } else {
-                        item.style.display = 'none';
-                        item.classList.add('is-hidden');
-                    }
-                    visibleCount++;
-                }
-            });
+            const visible = getVisibleCards();
+            if (visible.length === 0) return;
 
-            // Update load more button
-            if (toggleBtn && loadMoreText) {
-                const totalMatching = allItems.filter(item => {
-                    const cat = item.getAttribute('data-category');
-                    return activeFilter === 'all' || cat === activeFilter;
-                }).length;
+            // Estimate current card by scroll offset
+            const firstCard = visible[0];
+            const cardWidth = firstCard ? (firstCard.offsetWidth + 22) : 342;
+            const currentIdx = Math.min(visible.length, Math.max(1, Math.round(scrollTrack.scrollLeft / cardWidth) + 1));
 
-                if (totalMatching <= 16) {
-                    toggleBtn.style.display = 'none';
-                } else {
-                    toggleBtn.style.display = 'inline-flex';
-                    if (isExpanded) {
-                        loadMoreText.textContent = 'Ver menos fotos';
-                        toggleBtn.classList.add('expanded');
-                    } else {
-                        const remaining = totalMatching - 16;
-                        loadMoreText.textContent = `Ver más fotografías (${remaining} fotos más)`;
-                        toggleBtn.classList.remove('expanded');
-                    }
-                }
+            if (currentIdxEl) {
+                currentIdxEl.textContent = String(currentIdx).padStart(2, '0');
             }
         }
 
-        // Filter button clicks
+        // Filter cards
+        function applyFilter(filter) {
+            activeFilter = filter;
+            let visibleCount = 0;
+
+            allCards.forEach(card => {
+                const cat = card.getAttribute('data-category');
+                const matches = (filter === 'all' || cat === filter);
+                if (matches) {
+                    card.classList.remove('is-hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('is-hidden');
+                }
+            });
+
+            if (totalIdxEl) {
+                totalIdxEl.textContent = String(visibleCount).padStart(2, '0');
+            }
+
+            // Scroll back to start
+            scrollTrack.scrollTo({ left: 0, behavior: 'smooth' });
+            setTimeout(updateProgressAndCounter, 300);
+        }
+
+        // Filter buttons click
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
+                filterBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
                 btn.classList.add('active');
-                activeFilter = btn.getAttribute('data-filter');
-                updateGalleryVisibility();
+                btn.setAttribute('aria-selected', 'true');
+                applyFilter(btn.getAttribute('data-filter'));
             });
         });
 
-        // Toggle load more / show less
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', () => {
-                isExpanded = !isExpanded;
-                updateGalleryVisibility();
-                if (!isExpanded) {
-                    const gallerySection = document.getElementById('gallery');
-                    if (gallerySection) {
-                        gallerySection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
+        // Navigation buttons (Prev / Next)
+        function getScrollStep() {
+            const visible = getVisibleCards();
+            if (visible.length > 0) {
+                return visible[0].offsetWidth + 22;
+            }
+            return 342;
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                const step = getScrollStep();
+                scrollTrack.scrollBy({ left: -step, behavior: 'smooth' });
             });
         }
 
-        // Initialize visibility
-        updateGalleryVisibility();
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                const step = getScrollStep();
+                scrollTrack.scrollBy({ left: step, behavior: 'smooth' });
+            });
+        }
+
+        // Mouse Drag to Scroll (Desktop)
+        scrollTrack.addEventListener('mousedown', (e) => {
+            isMouseDown = true;
+            isDragging = false;
+            dragDistance = 0;
+            startX = e.pageX - scrollTrack.offsetLeft;
+            startScrollLeft = scrollTrack.scrollLeft;
+            scrollTrack.classList.add('is-dragging');
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (isMouseDown) {
+                isMouseDown = false;
+                scrollTrack.classList.remove('is-dragging');
+                setTimeout(() => { isDragging = false; }, 60);
+            }
+        });
+
+        scrollTrack.addEventListener('mousemove', (e) => {
+            if (!isMouseDown) return;
+            const x = e.pageX - scrollTrack.offsetLeft;
+            const walk = (x - startX) * 1.4;
+            dragDistance = Math.abs(x - startX);
+            if (dragDistance > 6) {
+                isDragging = true;
+            }
+            scrollTrack.scrollLeft = startScrollLeft - walk;
+        });
+
+        // Mouse Wheel Horizontal Scroll (Smooth & non-blocking at edges)
+        scrollTrack.addEventListener('wheel', (e) => {
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                const maxScroll = scrollTrack.scrollWidth - scrollTrack.clientWidth;
+                const canScrollRight = e.deltaY > 0 && scrollTrack.scrollLeft < maxScroll - 2;
+                const canScrollLeft = e.deltaY < 0 && scrollTrack.scrollLeft > 2;
+
+                if (canScrollRight || canScrollLeft) {
+                    e.preventDefault();
+                    scrollTrack.scrollLeft += e.deltaY;
+                }
+            }
+        }, { passive: false });
+
+        // Scroll event listener for progress bar
+        scrollTrack.addEventListener('scroll', updateProgressAndCounter, { passive: true });
+
+        // Initialize total count
+        if (totalIdxEl) {
+            totalIdxEl.textContent = String(allCards.length).padStart(2, '0');
+        }
+        updateProgressAndCounter();
 
         // ----------------------------------------------------------------------
         // LIGHTBOX MODAL LOGIC
@@ -780,9 +854,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let activeImagesList = [];
 
         function getVisibleGalleryImages() {
-            return allItems.filter(item => item.style.display !== 'none').map(item => {
-                const img = item.querySelector('img');
-                const badge = item.querySelector('.masonry-badge');
+            return getVisibleCards().map(card => {
+                const img = card.querySelector('img');
+                const badge = card.querySelector('.gallery-card-badge');
                 return {
                     src: img ? img.getAttribute('src') : '',
                     alt: img ? img.getAttribute('alt') : '',
@@ -829,30 +903,30 @@ document.addEventListener('DOMContentLoaded', () => {
             updateLightboxContent();
         }
 
-        // Attach click listeners to cards
-        allItems.forEach(item => {
-            const card = item.querySelector('.masonry-card');
-            if (card) {
-                card.addEventListener('click', () => {
-                    const currentVisible = getVisibleGalleryImages();
-                    const clickedImg = item.querySelector('img');
-                    if (clickedImg) {
-                        const clickedSrc = clickedImg.getAttribute('src');
-                        const idx = currentVisible.findIndex(img => img.src === clickedSrc);
-                        if (idx !== -1) {
-                            openLightbox(idx);
-                        }
+        // Attach click listeners to cards (ignoring drags)
+        allCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                    return;
+                }
+                const currentVisible = getVisibleGalleryImages();
+                const clickedImg = card.querySelector('img');
+                if (clickedImg) {
+                    const clickedSrc = clickedImg.getAttribute('src');
+                    const idx = currentVisible.findIndex(img => img.src === clickedSrc);
+                    if (idx !== -1) {
+                        openLightbox(idx);
                     }
-                });
-            }
+                }
+            });
         });
 
-        // Controls
+        // Lightbox buttons
         if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
         if (lightboxPrev) lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); prevLightboxImage(); });
         if (lightboxNext) lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); nextLightboxImage(); });
 
-        // Click on background closes lightbox
         if (lightbox) {
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
@@ -863,7 +937,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('is-open')) return;
+            if (!lightbox || !lightbox.classList.contains('is-open')) return;
             if (e.key === 'Escape') closeLightbox();
             if (e.key === 'ArrowLeft') prevLightboxImage();
             if (e.key === 'ArrowRight') nextLightboxImage();
