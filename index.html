@@ -365,253 +365,166 @@
                 </div>
             </div>
         </section>
-                        <!-- GALERÍA CINEMATOGRÁFICA PREMIUM DE INSTALACIONES Y TERAPIAS -->
+                                <!-- GALERÍA COVERFLOW 3D PREMIUM (CURADA: 7 FOTOGRAFÍAS HD) -->
         <section id="gallery" class="gallery-section section-padding">
             <div class="container">
                 <div class="section-header text-center">
                     <span class="section-subtitle">Instalaciones & Espacios Clínicos</span>
-                    <h2 class="section-title">Nuestras Instalaciones y Espacios de Terapia</h2>
+                    <h2 class="section-title">Espacios Diseñados para tu Bienestar</h2>
                     <p class="section-description">
-                        Un entorno clínico privado, moderno y equipado con tecnología de vanguardia para garantizar tu máxima recuperación y confort.
+                        Conoce nuestras instalaciones profesionales en Toluca: un entorno privado, seguro y equipado con tecnología de vanguardia para tu recuperación.
                     </p>
                 </div>
 
-                <!-- Filtros por Áreas Clínicas -->
-                <div class="gallery-category-nav">
-                    <div class="gallery-filters" role="tablist" aria-label="Filtrar por espacio clínico">
-                        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
-                            Todas las Instalaciones (41)
-                        </button>
-                        <button class="filter-btn" data-filter="atencion" role="tab" aria-selected="false">
-                            Atención y Valoración
-                        </button>
-                        <button class="filter-btn" data-filter="instalaciones" role="tab" aria-selected="false">
-                            Consultorios y Espacios
-                        </button>
-                        <button class="filter-btn" data-filter="rehabilitacion" role="tab" aria-selected="false">
-                            Equipamiento y Terapia
-                        </button>
-                    </div>
-                </div>
-
-                <!-- TEATRO FOTOGRÁFICO PRINCIPAL (CINEMATIC MAIN STAGE) -->
-                <div class="gallery-theater-stage">
-                    <div class="theater-viewport" id="theater-viewport">
-                        <img id="theater-main-img" src="assets/photo_4985880676569648341_y.jpg" alt="Atención y Valoración Biomecánica - Carolina Villegas Fisioterapia" class="theater-image">
+                <!-- ESCENARIO COVERFLOW 3D -->
+                <div class="coverflow-wrapper" id="coverflow-wrapper">
+                    <div class="coverflow-stage" id="coverflow-stage">
                         
-                        <!-- Barra superior flotante de la vista principal -->
-                        <div class="theater-top-bar">
-                            <span class="theater-badge" id="theater-badge">Atención y Valoración</span>
-                            <button class="theater-fullscreen-btn" id="theater-fullscreen-btn" aria-label="Ver fotografía en pantalla completa" title="Ver en pantalla completa">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                                <span>Ver en HD</span>
-                            </button>
-                        </div>
-
-                        <!-- Flechas laterales de navegación -->
-                        <button class="theater-nav-arrow prev" id="theater-prev-btn" aria-label="Fotografía anterior" title="Foto anterior">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-                        </button>
-                        <button class="theater-nav-arrow next" id="theater-next-btn" aria-label="Siguiente fotografía" title="Siguiente foto">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        </button>
-
-                        <!-- Panel de información y metadatos clínicos -->
-                        <div class="theater-caption-overlay">
-                            <div class="theater-caption-info">
-                                <div class="theater-counter-row">
-                                    <span class="theater-counter" id="theater-counter">Foto 01 de 41</span>
+                        <!-- Slide 0 -->
+                        <div class="coverflow-slide" data-index="0" data-src="assets/photo_4985880676569648362_y.jpg" data-title="Consultorio y Diagnóstico Clínico" data-badge="Instalaciones de Primer Nivel" data-desc="Espacio privado y acondicionado para valoraciones biomecánicas completas.">
+                            <div class="slide-card">
+                                <img src="assets/photo_4985880676569648362_y.jpg" alt="Consultorio y Diagnóstico Clínico - Carolina Villegas Fisioterapia" loading="lazy">
+                                <div class="slide-overlay">
+                                    <span class="slide-badge">Instalaciones de Primer Nivel</span>
+                                    <div class="slide-info">
+                                        <h3 class="slide-title">Consultorio y Diagnóstico Clínico</h3>
+                                        <p class="slide-desc">Espacio privado y acondicionado para valoraciones biomecánicas completas.</p>
+                                    </div>
+                                    <button class="slide-zoom-btn" aria-label="Ampliar fotografía en alta definición">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
                                 </div>
-                                <h3 class="theater-title" id="theater-title">Atención y Valoración Biomecánica</h3>
-                                <p class="theater-desc" id="theater-desc">Valoración clínica exhaustiva para determinar el origen de tu dolor y diseñar tu ruta de recuperación individual.</p>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- CINTA DE MINIATURAS INTERACTIVAS (FILMSTRIP) -->
-                <div class="gallery-filmstrip-wrapper">
-                    <div class="filmstrip-header">
-                        <span class="filmstrip-label">Colección Fotográfica Completa</span>
-                        <div class="filmstrip-nav-mini">
-                            <button class="filmstrip-btn" id="filmstrip-prev" aria-label="Desplazar miniaturas hacia la izquierda" title="Miniaturas anteriores">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-                            </button>
-                            <button class="filmstrip-btn" id="filmstrip-next" aria-label="Desplazar miniaturas hacia la derecha" title="Miniaturas siguientes">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-                            </button>
+                        <!-- Slide 1 -->
+                        <div class="coverflow-slide" data-index="1" data-src="assets/photo_4985880676569648368_y.jpg" data-title="Cabina de Fisioterapia Avanzada" data-badge="Terapia Personalizada" data-desc="Camillas anatómicas de alto soporte y ambiente sereno para tu sesión individual.">
+                            <div class="slide-card">
+                                <img src="assets/photo_4985880676569648368_y.jpg" alt="Cabina de Fisioterapia Avanzada - Carolina Villegas Fisioterapia" loading="lazy">
+                                <div class="slide-overlay">
+                                    <span class="slide-badge">Terapia Personalizada</span>
+                                    <div class="slide-info">
+                                        <h3 class="slide-title">Cabina de Fisioterapia Avanzada</h3>
+                                        <p class="slide-desc">Camillas anatómicas de alto soporte y ambiente sereno para tu sesión individual.</p>
+                                    </div>
+                                    <button class="slide-zoom-btn" aria-label="Ampliar fotografía en alta definición">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- Slide 2 -->
+                        <div class="coverflow-slide" data-index="2" data-src="assets/photo_4985880676569648369_y.jpg" data-title="Área de Readaptación Funcional" data-badge="Rehabilitación Activa" data-desc="Zona de mecanoterapia y ejercicio terapéutico orientado al retorno de movilidad segura.">
+                            <div class="slide-card">
+                                <img src="assets/photo_4985880676569648369_y.jpg" alt="Área de Readaptación Funcional - Carolina Villegas Fisioterapia" loading="lazy">
+                                <div class="slide-overlay">
+                                    <span class="slide-badge">Rehabilitación Activa</span>
+                                    <div class="slide-info">
+                                        <h3 class="slide-title">Área de Readaptación Funcional</h3>
+                                        <p class="slide-desc">Zona de mecanoterapia y ejercicio terapéutico orientado al retorno de movilidad segura.</p>
+                                    </div>
+                                    <button class="slide-zoom-btn" aria-label="Ampliar fotografía en alta definición">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="coverflow-slide" data-index="3" data-src="assets/photo_4985880676569648372_y.jpg" data-title="Equipamiento de Electroanalgesia" data-badge="Tecnología Especializada" data-desc="Dispositivos electromédicos certificados para modulación del dolor y desinflamación tisular.">
+                            <div class="slide-card">
+                                <img src="assets/photo_4985880676569648372_y.jpg" alt="Equipamiento de Electroanalgesia - Carolina Villegas Fisioterapia" loading="lazy">
+                                <div class="slide-overlay">
+                                    <span class="slide-badge">Tecnología Especializada</span>
+                                    <div class="slide-info">
+                                        <h3 class="slide-title">Equipamiento de Electroanalgesia</h3>
+                                        <p class="slide-desc">Dispositivos electromédicos certificados para modulación del dolor y desinflamación tisular.</p>
+                                    </div>
+                                    <button class="slide-zoom-btn" aria-label="Ampliar fotografía en alta definición">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4 -->
+                        <div class="coverflow-slide" data-index="4" data-src="assets/photo_4985880676569648376_y.jpg" data-title="Entorno Climatizado y Sanitizado" data-badge="Confort & Seguridad" data-desc="Cumplimiento de estrictos protocolos de bioseguridad y temperatura agradable.">
+                            <div class="slide-card">
+                                <img src="assets/photo_4985880676569648376_y.jpg" alt="Entorno Climatizado y Sanitizado - Carolina Villegas Fisioterapia" loading="lazy">
+                                <div class="slide-overlay">
+                                    <span class="slide-badge">Confort & Seguridad</span>
+                                    <div class="slide-info">
+                                        <h3 class="slide-title">Entorno Climatizado y Sanitizado</h3>
+                                        <p class="slide-desc">Cumplimiento de estrictos protocolos de bioseguridad y temperatura agradable.</p>
+                                    </div>
+                                    <button class="slide-zoom-btn" aria-label="Ampliar fotografía en alta definición">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 5 -->
+                        <div class="coverflow-slide" data-index="5" data-src="assets/photo_4985880676569648380_y.jpg" data-title="Zona de Reeducación Neuromuscular" data-badge="Fortalecimiento Biomecánico" data-desc="Aditamentos de propiocepción y resistencia progresiva para atletas y pacientes post-quirúrgicos.">
+                            <div class="slide-card">
+                                <img src="assets/photo_4985880676569648380_y.jpg" alt="Zona de Reeducación Neuromuscular - Carolina Villegas Fisioterapia" loading="lazy">
+                                <div class="slide-overlay">
+                                    <span class="slide-badge">Fortalecimiento Biomecánico</span>
+                                    <div class="slide-info">
+                                        <h3 class="slide-title">Zona de Reeducación Neuromuscular</h3>
+                                        <p class="slide-desc">Aditamentos de propiocepción y resistencia progresiva para atletas y pacientes post-quirúrgicos.</p>
+                                    </div>
+                                    <button class="slide-zoom-btn" aria-label="Ampliar fotografía en alta definición">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 6 -->
+                        <div class="coverflow-slide" data-index="6" data-src="assets/photo_4985880676569648381_y.jpg" data-title="Atención Clínica de Alta Calidad" data-badge="Cuidado Integral" data-desc="Tratamientos diseñados por especialistas certificados para erradicar el dolor y restaurar tu bienestar.">
+                            <div class="slide-card">
+                                <img src="assets/photo_4985880676569648381_y.jpg" alt="Atención Clínica de Alta Calidad - Carolina Villegas Fisioterapia" loading="lazy">
+                                <div class="slide-overlay">
+                                    <span class="slide-badge">Cuidado Integral</span>
+                                    <div class="slide-info">
+                                        <h3 class="slide-title">Atención Clínica de Alta Calidad</h3>
+                                        <p class="slide-desc">Tratamientos diseñados por especialistas certificados para erradicar el dolor y restaurar tu bienestar.</p>
+                                    </div>
+                                    <button class="slide-zoom-btn" aria-label="Ampliar fotografía en alta definición">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    
-                    <div class="gallery-filmstrip-track" id="gallery-filmstrip-track" tabindex="0" role="region" aria-label="Miniaturas de la galería">
-                        <button class="filmstrip-thumb active" data-index="0" data-category="atencion" data-src="assets/photo_4985880676569648341_y.jpg" data-title="Atención y Valoración Biomecánica" data-badge="Atención y Valoración" data-desc="Valoración clínica exhaustiva para determinar el origen de tu dolor y diseñar tu ruta de recuperación individual." aria-label="Foto 1: Atención y Valoración Biomecánica">
-                            <img src="assets/photo_4985880676569648341_y.jpg" alt="Atención y Valoración Biomecánica - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">01</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="1" data-category="instalaciones" data-src="assets/photo_4985880676569648342_y.jpg" data-title="Instalaciones y Cabinas Privadas" data-badge="Consultorios y Espacios" data-desc="Ambiente clínico climatizado, higienizado y concebido para tu total comodidad y privacidad." aria-label="Foto 2: Instalaciones y Cabinas Privadas">
-                            <img src="assets/photo_4985880676569648342_y.jpg" alt="Instalaciones y Cabinas Privadas - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">02</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="2" data-category="rehabilitacion" data-src="assets/photo_4985880676569648343_y.jpg" data-title="Área de Readaptación Funcional" data-badge="Equipamiento y Terapia" data-desc="Mecanoterapia y entrenamiento neuromuscular para restaurar arcos de movilidad seguros." aria-label="Foto 3: Área de Readaptación Funcional">
-                            <img src="assets/photo_4985880676569648343_y.jpg" alt="Área de Readaptación Funcional - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">03</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="3" data-category="atencion" data-src="assets/photo_4985880676569648344_y.jpg" data-title="Terapia Manual Especializada" data-badge="Atención y Valoración" data-desc="Técnicas miofasciales y descompresión articular para alivio inmediato de contracturas profundas." aria-label="Foto 4: Terapia Manual Especializada">
-                            <img src="assets/photo_4985880676569648344_y.jpg" alt="Terapia Manual Especializada - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">04</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="4" data-category="atencion" data-src="assets/photo_4985880676569648345_y.jpg" data-title="Diagnóstico y Pruebas Posturales" data-badge="Atención y Valoración" data-desc="Análisis cinemático del movimiento para corregir patrones mecánicos lesivos en tus actividades." aria-label="Foto 5: Diagnóstico y Pruebas Posturales">
-                            <img src="assets/photo_4985880676569648345_y.jpg" alt="Diagnóstico y Pruebas Posturales - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">05</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="5" data-category="instalaciones" data-src="assets/photo_4985880676569648346_y.jpg" data-title="Camillas Clínicas Ergonómicas" data-badge="Consultorios y Espacios" data-desc="Mobiliario médico de soporte ergonómico diseñado para tratamientos relajantes y confortables." aria-label="Foto 6: Camillas Clínicas Ergonómicas">
-                            <img src="assets/photo_4985880676569648346_y.jpg" alt="Camillas Clínicas Ergonómicas - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">06</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="6" data-category="instalaciones" data-src="assets/photo_4985880676569648347_y.jpg" data-title="Cabina de Tratamiento Personalizado" data-badge="Consultorios y Espacios" data-desc="Espacio individual cerrado que brinda aislamiento acústico y tranquilidad absoluta." aria-label="Foto 7: Cabina de Tratamiento Personalizado">
-                            <img src="assets/photo_4985880676569648347_y.jpg" alt="Cabina de Tratamiento Personalizado - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">07</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="7" data-category="rehabilitacion" data-src="assets/photo_4985880676569648348_y.jpg" data-title="Equipamiento de Ejercicio Terapéutico" data-badge="Equipamiento y Terapia" data-desc="Pesas terapéuticas, ligas de resistencia progresiva y plataformas de propiocepción." aria-label="Foto 8: Equipamiento de Ejercicio Terapéutico">
-                            <img src="assets/photo_4985880676569648348_y.jpg" alt="Equipamiento de Ejercicio Terapéutico - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">08</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="8" data-category="atencion" data-src="assets/photo_4985880676569648349_y.jpg" data-title="Electroanalgesia y Corrientes Tens" data-badge="Atención y Valoración" data-desc="Dispositivos de electroterapia de grado médico para modulación del dolor y desinflamación." aria-label="Foto 9: Electroanalgesia y Corrientes Tens">
-                            <img src="assets/photo_4985880676569648349_y.jpg" alt="Electroanalgesia y Corrientes Tens - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">09</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="9" data-category="atencion" data-src="assets/photo_4985880676569648350_y.jpg" data-title="Valoración Ortopédica y Articular" data-badge="Atención y Valoración" data-desc="Examen de fuerza muscular, estabilidad ligamentosa y movilidad de articulaciones." aria-label="Foto 10: Valoración Ortopédica y Articular">
-                            <img src="assets/photo_4985880676569648350_y.jpg" alt="Valoración Ortopédica y Articular - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">10</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="10" data-category="instalaciones" data-src="assets/photo_4985880676569648351_y.jpg" data-title="Consultorio de Alta Especialidad" data-badge="Consultorios y Espacios" data-desc="Instalaciones equipadas con estándares hospitalarios de limpieza, orden y ergonomía." aria-label="Foto 11: Consultorio de Alta Especialidad">
-                            <img src="assets/photo_4985880676569648351_y.jpg" alt="Consultorio de Alta Especialidad - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">11</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="11" data-category="rehabilitacion" data-src="assets/photo_4985880676569648352_y.jpg" data-title="Entrenamiento Propioceptivo" data-badge="Equipamiento y Terapia" data-desc="Ejercicios de equilibrio y estabilidad articular para prevención de recidivas en atletas." aria-label="Foto 12: Entrenamiento Propioceptivo">
-                            <img src="assets/photo_4985880676569648352_y.jpg" alt="Entrenamiento Propioceptivo - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">12</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="12" data-category="atencion" data-src="assets/photo_4985880676569648353_y.jpg" data-title="Ultrasonido y Termoterapia" data-badge="Atención y Valoración" data-desc="Tratamientos profundos con ultrasonido terapéutico para acelerar regeneración tisular." aria-label="Foto 13: Ultrasonido y Termoterapia">
-                            <img src="assets/photo_4985880676569648353_y.jpg" alt="Ultrasonido y Termoterapia - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">13</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="13" data-category="atencion" data-src="assets/photo_4985880676569648354_y.jpg" data-title="Seguimiento de Pacientes Post-Quirúrgicos" data-badge="Atención y Valoración" data-desc="Protocolos científicamente estructurados para recuperar movilidad tras cirugías ortopédicas." aria-label="Foto 14: Seguimiento de Pacientes Post-Quirúrgicos">
-                            <img src="assets/photo_4985880676569648354_y.jpg" alt="Seguimiento de Pacientes Post-Quirúrgicos - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">14</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="14" data-category="instalaciones" data-src="assets/photo_4985880676569648355_y.jpg" data-title="Área de Recepción y Bienestar" data-badge="Consultorios y Espacios" data-desc="Atención puntual y respetuosa con tu tiempo en un ambiente acogedor desde tu llegada." aria-label="Foto 15: Área de Recepción y Bienestar">
-                            <img src="assets/photo_4985880676569648355_y.jpg" alt="Área de Recepción y Bienestar - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">15</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="15" data-category="rehabilitacion" data-src="assets/photo_4985880676569648356_y.jpg" data-title="Readaptación Muscular Progresiva" data-badge="Equipamiento y Terapia" data-desc="Sesiones individuales asistidas para devolver tono y fuerza a grupos musculares inhibidos." aria-label="Foto 16: Readaptación Muscular Progresiva">
-                            <img src="assets/photo_4985880676569648356_y.jpg" alt="Readaptación Muscular Progresiva - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">16</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="16" data-category="atencion" data-src="assets/photo_4985880676569648357_y.jpg" data-title="Presoterapia y Descarga Muscular" data-badge="Atención y Valoración" data-desc="Drenaje circulatorio y relajación muscular profunda para atletas de alto rendimiento." aria-label="Foto 17: Presoterapia y Descarga Muscular">
-                            <img src="assets/photo_4985880676569648357_y.jpg" alt="Presoterapia y Descarga Muscular - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">17</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="17" data-category="atencion" data-src="assets/photo_4985880676569648358_y.jpg" data-title="Estudio de Marcha y Apoyo Plantar" data-badge="Atención y Valoración" data-desc="Análisis de pisada y distribución de cargas corporales durante la deambulación." aria-label="Foto 18: Estudio de Marcha y Apoyo Plantar">
-                            <img src="assets/photo_4985880676569648358_y.jpg" alt="Estudio de Marcha y Apoyo Plantar - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">18</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="18" data-category="instalaciones" data-src="assets/photo_4985880676569648359_y.jpg" data-title="Espacio Seguro e Higiénico" data-badge="Consultorios y Espacios" data-desc="Protocolos estrictos de sanitización entre pacientes y materiales de grado clínico." aria-label="Foto 19: Espacio Seguro e Higiénico">
-                            <img src="assets/photo_4985880676569648359_y.jpg" alt="Espacio Seguro e Higiénico - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">19</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="19" data-category="rehabilitacion" data-src="assets/photo_4985880676569648360_y.jpg" data-title="Fortalecimiento y Resistencia Muscular" data-badge="Equipamiento y Terapia" data-desc="Cargas dosificadas y supervisión continua para evitar compensaciones perjudiciales." aria-label="Foto 20: Fortalecimiento y Resistencia Muscular">
-                            <img src="assets/photo_4985880676569648360_y.jpg" alt="Fortalecimiento y Resistencia Muscular - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">20</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="20" data-category="atencion" data-src="assets/photo_4985880676569648361_y.jpg" data-title="Tratamiento de Cervicalgia y Lumbalgia" data-badge="Atención y Valoración" data-desc="Técnicas osteoarticulares y estiramientos dirigidos para liberar tensión en la columna." aria-label="Foto 21: Tratamiento de Cervicalgia y Lumbalgia">
-                            <img src="assets/photo_4985880676569648361_y.jpg" alt="Tratamiento de Cervicalgia y Lumbalgia - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">21</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="21" data-category="atencion" data-src="assets/photo_4985880676569648362_y.jpg" data-title="Consulta y Plan Terapéutico" data-badge="Atención y Valoración" data-desc="Explicación detallada y transparente de tu diagnóstico con metas clínicas claras." aria-label="Foto 22: Consulta y Plan Terapéutico">
-                            <img src="assets/photo_4985880676569648362_y.jpg" alt="Consulta y Plan Terapéutico - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">22</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="22" data-category="instalaciones" data-src="assets/photo_4985880676569648363_y.jpg" data-title="Mobiliario Terapéutico Certificado" data-badge="Consultorios y Espacios" data-desc="Accesorios de apoyo anatómico para garantizar posturas óptimas durante el tratamiento." aria-label="Foto 23: Mobiliario Terapéutico Certificado">
-                            <img src="assets/photo_4985880676569648363_y.jpg" alt="Mobiliario Terapéutico Certificado - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">23</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="23" data-category="rehabilitacion" data-src="assets/photo_4985880676569648364_y.jpg" data-title="Reeducación de Patrones Motores" data-badge="Equipamiento y Terapia" data-desc="Corrección de la técnica de movimiento y gestos deportivos para evitar sobrecargas." aria-label="Foto 24: Reeducación de Patrones Motores">
-                            <img src="assets/photo_4985880676569648364_y.jpg" alt="Reeducación de Patrones Motores - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">24</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="24" data-category="atencion" data-src="assets/photo_4985880676569648365_y.jpg" data-title="Terapia Descontracturante Profunda" data-badge="Atención y Valoración" data-desc="Presión controlada y movilización tisular para erradicar puntos gatillo miofasciales." aria-label="Foto 25: Terapia Descontracturante Profunda">
-                            <img src="assets/photo_4985880676569648365_y.jpg" alt="Terapia Descontracturante Profunda - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">25</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="25" data-category="atencion" data-src="assets/photo_4985880676569648366_y.jpg" data-title="Exploración Neurológica y Reflejos" data-badge="Atención y Valoración" data-desc="Evaluación de respuestas neuromusculares y sensibilidad en extremidades comprometidas." aria-label="Foto 26: Exploración Neurológica y Reflejos">
-                            <img src="assets/photo_4985880676569648366_y.jpg" alt="Exploración Neurológica y Reflejos - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">26</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="26" data-category="instalaciones" data-src="assets/photo_4985880676569648367_y.jpg" data-title="Instrumental de Fisioterapia Avanzada" data-badge="Consultorios y Espacios" data-desc="Herramientas de liberación fascial y agentes físicos de última generación." aria-label="Foto 27: Instrumental de Fisioterapia Avanzada">
-                            <img src="assets/photo_4985880676569648367_y.jpg" alt="Instrumental de Fisioterapia Avanzada - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">27</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="27" data-category="instalaciones" data-src="assets/photo_4985880676569648368_y.jpg" data-title="Zona de Terapia y Reposo" data-badge="Consultorios y Espacios" data-desc="Luz cálida y atmósfera tranquila pensada para reducir el estrés físico y emocional." aria-label="Foto 28: Zona de Terapia y Reposo">
-                            <img src="assets/photo_4985880676569648368_y.jpg" alt="Zona de Terapia y Reposo - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">28</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="28" data-category="rehabilitacion" data-src="assets/photo_4985880676569648369_y.jpg" data-title="Rehabilitación de Lesiones Deportivas" data-badge="Equipamiento y Terapia" data-desc="Protocolos de retorno seguro al deporte tras esguinces, desgarros o meniscopatías." aria-label="Foto 29: Rehabilitación de Lesiones Deportivas">
-                            <img src="assets/photo_4985880676569648369_y.jpg" alt="Rehabilitación de Lesiones Deportivas - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">29</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="29" data-category="atencion" data-src="assets/photo_4985880676569648370_y.jpg" data-title="Crioterapia y Manejo de Inflamación" data-badge="Atención y Valoración" data-desc="Terapia de frío dosificada para controlar edema agudo y acelerar la recuperación." aria-label="Foto 30: Crioterapia y Manejo de Inflamación">
-                            <img src="assets/photo_4985880676569648370_y.jpg" alt="Crioterapia y Manejo de Inflamación - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">30</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="30" data-category="atencion" data-src="assets/photo_4985880676569648371_y.jpg" data-title="Valoración de Rango Articular (Goniometría)" data-badge="Atención y Valoración" data-desc="Medición precisa de grados de movilidad en hombros, caderas, rodillas y tobillos." aria-label="Foto 31: Valoración de Rango Articular (Goniometría)">
-                            <img src="assets/photo_4985880676569648371_y.jpg" alt="Valoración de Rango Articular (Goniometría) - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">31</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="31" data-category="instalaciones" data-src="assets/photo_4985880676569648372_y.jpg" data-title="Equipos Médicos de Precisión" data-badge="Consultorios y Espacios" data-desc="Tecnología electromédica calibrada periódicamente para brindar seguridad absoluta." aria-label="Foto 32: Equipos Médicos de Precisión">
-                            <img src="assets/photo_4985880676569648372_y.jpg" alt="Equipos Médicos de Precisión - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">32</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="32" data-category="rehabilitacion" data-src="assets/photo_4985880676569648373_y.jpg" data-title="Readaptación de Miembro Superior" data-badge="Equipamiento y Terapia" data-desc="Terapia específica para manguito rotador, codo de tenista y túnel carpiano." aria-label="Foto 33: Readaptación de Miembro Superior">
-                            <img src="assets/photo_4985880676569648373_y.jpg" alt="Readaptación de Miembro Superior - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">33</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="33" data-category="atencion" data-src="assets/photo_4985880676569648374_y.jpg" data-title="Terapia de Compresión Graduada" data-badge="Atención y Valoración" data-desc="Estimulación del retorno venoso y linfático en extremidades inferiores fatigadas." aria-label="Foto 34: Terapia de Compresión Graduada">
-                            <img src="assets/photo_4985880676569648374_y.jpg" alt="Terapia de Compresión Graduada - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">34</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="34" data-category="atencion" data-src="assets/photo_4985880676569648375_y.jpg" data-title="Atención Personalizada Uno a Uno" data-badge="Atención y Valoración" data-desc="Toda la sesión de 50 minutos está dedicada exclusivamente a tu evolución clínica." aria-label="Foto 35: Atención Personalizada Uno a Uno">
-                            <img src="assets/photo_4985880676569648375_y.jpg" alt="Atención Personalizada Uno a Uno - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">35</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="35" data-category="instalaciones" data-src="assets/photo_4985880676569648376_y.jpg" data-title="Cabina de Tratamiento Individual" data-badge="Consultorios y Espacios" data-desc="Privacidad acústica y visual para que recibas tu terapia con total serenidad." aria-label="Foto 36: Cabina de Tratamiento Individual">
-                            <img src="assets/photo_4985880676569648376_y.jpg" alt="Cabina de Tratamiento Individual - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">36</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="36" data-category="rehabilitacion" data-src="assets/photo_4985880676569648377_y.jpg" data-title="Rehabilitación de Columna Vertebral" data-badge="Equipamiento y Terapia" data-desc="Estabilización del core y fortalecimiento postural para escoliosis y discopatías." aria-label="Foto 37: Rehabilitación de Columna Vertebral">
-                            <img src="assets/photo_4985880676569648377_y.jpg" alt="Rehabilitación de Columna Vertebral - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">37</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="37" data-category="atencion" data-src="assets/photo_4985880676569648378_y.jpg" data-title="Electroestimulación Neuromuscular (EMS)" data-badge="Atención y Valoración" data-desc="Reactivación selectiva de fibras musculares atróficas o en recuperación motriz." aria-label="Foto 38: Electroestimulación Neuromuscular (EMS)">
-                            <img src="assets/photo_4985880676569648378_y.jpg" alt="Electroestimulación Neuromuscular (EMS) - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">38</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="38" data-category="atencion" data-src="assets/photo_4985880676569648379_y.jpg" data-title="Valoración de Fuerza Dinamometría" data-badge="Atención y Valoración" data-desc="Control objetivo de la progresión de fuerza a lo largo de tu programa terapéutico." aria-label="Foto 39: Valoración de Fuerza Dinamometría">
-                            <img src="assets/photo_4985880676569648379_y.jpg" alt="Valoración de Fuerza Dinamometría - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">39</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="39" data-category="instalaciones" data-src="assets/photo_4985880676569648380_y.jpg" data-title="Ambiente Cálido y Profesional" data-badge="Consultorios y Espacios" data-desc="Diseñado para que sientas la seguridad de estar en manos de profesionales certificados." aria-label="Foto 40: Ambiente Cálido y Profesional">
-                            <img src="assets/photo_4985880676569648380_y.jpg" alt="Ambiente Cálido y Profesional - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">40</span>
-                        </button>
-                        <button class="filmstrip-thumb" data-index="40" data-category="rehabilitacion" data-src="assets/photo_4985880676569648381_y.jpg" data-title="Fase Final de Alta y Retorno Funcional" data-badge="Equipamiento y Terapia" data-desc="Última etapa del tratamiento orientada a tu autonomía total y vida activa sin dolor." aria-label="Foto 41: Fase Final de Alta y Retorno Funcional">
-                            <img src="assets/photo_4985880676569648381_y.jpg" alt="Fase Final de Alta y Retorno Funcional - Carolina Villegas Fisioterapia" loading="lazy">
-                            <span class="thumb-num">41</span>
-                        </button>
-                    </div>
+
+                    <!-- Botones Flotantes de Navegación 3D -->
+                    <button class="coverflow-nav-btn prev" id="coverflow-prev" aria-label="Fotografía anterior" title="Foto anterior">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button class="coverflow-nav-btn next" id="coverflow-next" aria-label="Siguiente fotografía" title="Siguiente foto">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
                 </div>
 
-                <!-- FICHAS EDITORIALES DE ESTÁNDARES CLÍNICOS -->
+                <!-- Paginación y Contador de Lujo -->
+                <div class="coverflow-controls">
+                    <div class="coverflow-dots" id="coverflow-dots">
+                        <button class="coverflow-dot active" data-index="0" aria-label="Ir a diapositiva 1"></button>
+                        <button class="coverflow-dot" data-index="1" aria-label="Ir a diapositiva 2"></button>
+                        <button class="coverflow-dot" data-index="2" aria-label="Ir a diapositiva 3"></button>
+                        <button class="coverflow-dot" data-index="3" aria-label="Ir a diapositiva 4"></button>
+                        <button class="coverflow-dot" data-index="4" aria-label="Ir a diapositiva 5"></button>
+                        <button class="coverflow-dot" data-index="5" aria-label="Ir a diapositiva 6"></button>
+                        <button class="coverflow-dot" data-index="6" aria-label="Ir a diapositiva 7"></button>
+                    </div>
+                    <span class="coverflow-counter" id="coverflow-counter">01 / 07</span>
+                </div>
+
+                <!-- Tres Pilares Clínicos al Pie -->
                 <div class="gallery-features-grid">
                     <div class="gallery-feature-card">
                         <div class="feature-icon-wrap">
