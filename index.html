@@ -158,13 +158,8 @@
     <link rel="icon" href="assets/logo-50.png" type="image/png">
     
     <!-- Precarga del archivo de estilos principal (Evita demoras y prioriza la descarga) -->
-    <link rel="preload" href="styles.css?v=20261008-03" as="style">
-    <link rel="stylesheet" href="styles.css?v=20261008-03">
-    
-
-    
-    <!-- Precarga de la imagen LCP (logo) -->
-    <link rel="preload" href="assets/logo-100.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="styles.css?v=20261008-04" as="style">
+    <link rel="stylesheet" href="styles.css?v=20261008-04">
     
     <!-- Tipografía Google Fonts: Optimizada asíncronamente (Evita el bloqueo de renderizado) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -187,8 +182,8 @@
     <!-- HEADER STICKY PREMIUM -->
     <header class="header" id="header">
         <div class="header-container container">
-            <a href="#hero" class="logo-link" id="logo-link">
-                <img src="assets/logo-100.webp" alt="Carolina Villegas Terapia Física" class="logo-img" height="42" fetchpriority="high">
+            <a href="#hero" class="brand-link" id="logo-link" aria-label="Fisioterapia en Toluca">
+                <span class="brand-text">Fisioterapia <span class="brand-accent">en Toluca</span></span>
             </a>
             
             <nav class="nav-menu" id="nav-menu" aria-label="Menú principal">
@@ -993,8 +988,8 @@
     <footer class="footer">
         <div class="footer-top container">
             <div class="footer-brand-column">
-                <a href="#hero" class="footer-logo">
-                    <img src="assets/logo-100.webp" alt="Carolina Villegas Terapia Física" class="logo-img" height="38" loading="lazy">
+                <a href="#hero" class="footer-brand-link" aria-label="Fisioterapia en Toluca">
+                    <span class="brand-text">Fisioterapia <span class="brand-accent">en Toluca</span></span>
                 </a>
                 <p class="footer-brand-desc">
                     Clínica de fisioterapia avanzada y terapia física de alta especialidad en Toluca de Lerdo. Enfocados en devolver la autonomía y el movimiento a tu vida.
@@ -1064,6 +1059,6 @@
 
     
     <!-- Archivo JS -->
-    <script src="script.js?v=20261008-03" defer></script>
+    <script src="script.js?v=20261008-04" defer></script>
 </body>
 </html>

@@ -294,6 +294,42 @@ h1, h2, h3, h4, h5, h6 {
     height: 60px;
 }
 
+.brand-link,
+.footer-brand-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.brand-link:hover,
+.footer-brand-link:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+.brand-text {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    letter-spacing: -0.025em;
+    color: var(--dark-navy);
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.brand-text .brand-accent {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+.footer-brand-link .brand-text {
+    color: #ffffff;
+    font-size: 1.45rem;
+}
+
 .logo-img {
     height: 38px;
     width: auto;
