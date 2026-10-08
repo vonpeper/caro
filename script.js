@@ -338,94 +338,102 @@ document.addEventListener('DOMContentLoaded', () => {
         group.classList.remove('invalid');
     }
     
-    // Limpieza de estados de error al escribir
-    const inputs = bookingForm.querySelectorAll('.form-control');
-    inputs.forEach(input => {
-        input.addEventListener('input', () => {
-            clearInputError(input);
+    if (bookingForm) {
+        // Limpieza de estados de error al escribir
+        const inputs = bookingForm.querySelectorAll('.form-control');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                clearInputError(input);
+            });
         });
-    });
-    
-    bookingForm.addEventListener('submit', (e) => {
-        e.preventDefault();
         
-        const nameInput = document.getElementById('form-name');
-        const phoneInput = document.getElementById('form-phone');
-        const emailInput = document.getElementById('form-email');
-        const dateInput = document.getElementById('form-date');
-        const messageInput = document.getElementById('form-message');
-        
-        let isValid = true;
-        
-        // Validar nombre
-        if (nameInput.value.trim().length < 3) {
-            showInputError(nameInput);
-            isValid = false;
-        } else {
-            clearInputError(nameInput);
-        }
-        
-        // Validar teléfono
-        if (!validatePhone(phoneInput.value)) {
-            showInputError(phoneInput);
-            isValid = false;
-        } else {
-            clearInputError(phoneInput);
-        }
-        
-        // Validar correo
-        if (!validateEmail(emailInput.value)) {
-            showInputError(emailInput);
-            isValid = false;
-        } else {
-            clearInputError(emailInput);
-        }
-        
-        if (!isValid) {
-            return; // Detener flujo si hay errores
-        }
-        
-        // Estado de carga premium
-        btnSubmit.classList.add('loading');
-        btnSubmit.disabled = true;
-        
-        // Simulación de envío por API
-        setTimeout(() => {
-            btnSubmit.classList.remove('loading');
-            btnSubmit.disabled = false;
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
             
-            // Construir el mensaje formateado para WhatsApp
-            const nombre = encodeURIComponent(nameInput.value.trim());
-            const telefono = encodeURIComponent(phoneInput.value.trim());
-            const email = encodeURIComponent(emailInput.value.trim());
-            const fecha = encodeURIComponent(dateInput.value ? dateInput.value : 'No especificada');
-            const mensajeOriginal = messageInput.value.trim();
-            const mensaje = encodeURIComponent(mensajeOriginal ? mensajeOriginal : 'Ninguno');
+            const nameInput = document.getElementById('form-name');
+            const phoneInput = document.getElementById('form-phone');
+            const emailInput = document.getElementById('form-email');
+            const dateInput = document.getElementById('form-date');
+            const messageInput = document.getElementById('form-message');
             
-            const textoWhatsApp = `Hola,%20quisiera%20agendar%20una%20cita%20con%20la%20Dra.%20Carolina%20Villegas.%0A%0A*Mis%20Datos:*%0A%E2%80%A2%20*Nombre:*%20${nombre}%0A%E2%80%A2%20*Tel%C3%A9fono:*%20${telefono}%0A%E2%80%A2%20*Email:*%20${email}%0A%E2%80%A2%20*Fecha%20tentativa:*%20${fecha}%0A%E2%80%A2%20*Padecimiento:*%20${mensaje}`;
+            let isValid = true;
             
-            // Link de WhatsApp de la Dra. Carolina Villegas
-            const urlWhatsApp = `https://wa.me/5217225714265?text=${textoWhatsApp}`;
+            // Validar nombre
+            if (nameInput.value.trim().length < 3) {
+                showInputError(nameInput);
+                isValid = false;
+            } else {
+                clearInputError(nameInput);
+            }
             
-            // Mostrar mensaje de éxito
-            formResponseAlert.className = 'form-alert success';
-            formResponseAlert.innerHTML = `
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span>¡Datos procesados! Redirigiéndote a WhatsApp para agendar tu cita...</span>
-            `;
-            formResponseAlert.hidden = false;
+            // Validar teléfono
+            if (!validatePhone(phoneInput.value)) {
+                showInputError(phoneInput);
+                isValid = false;
+            } else {
+                clearInputError(phoneInput);
+            }
             
-            // Limpiar formulario
-            bookingForm.reset();
+            // Validar correo
+            if (!validateEmail(emailInput.value)) {
+                showInputError(emailInput);
+                isValid = false;
+            } else {
+                clearInputError(emailInput);
+            }
             
-            // Redirigir a WhatsApp en pestaña nueva después de 1.8 segundos
+            if (!isValid) {
+                return; // Detener flujo si hay errores
+            }
+            
+            // Estado de carga premium
+            if (btnSubmit) {
+                btnSubmit.classList.add('loading');
+                btnSubmit.disabled = true;
+            }
+            
+            // Simulación de envío por API
             setTimeout(() => {
-                window.open(urlWhatsApp, '_blank');
-                formResponseAlert.hidden = true;
-            }, 1800);
-            
-        }, 1500); // 1.5 segundos de retraso realista
-    });
+                if (btnSubmit) {
+                    btnSubmit.classList.remove('loading');
+                    btnSubmit.disabled = false;
+                }
+                
+                // Construir el mensaje formateado para WhatsApp
+                const nombre = encodeURIComponent(nameInput.value.trim());
+                const telefono = encodeURIComponent(phoneInput.value.trim());
+                const email = encodeURIComponent(emailInput.value.trim());
+                const fecha = encodeURIComponent(dateInput.value ? dateInput.value : 'No especificada');
+                const mensajeOriginal = messageInput.value.trim();
+                const mensaje = encodeURIComponent(mensajeOriginal ? mensajeOriginal : 'Ninguno');
+                
+                const textoWhatsApp = `Hola,%20quisiera%20agendar%20una%20cita%20con%20la%20Dra.%20Carolina%20Villegas.%0A%0A*Mis%20Datos:*%0A%E2%80%A2%20*Nombre:*%20${nombre}%0A%E2%80%A2%20*Tel%C3%A9fono:*%20${telefono}%0A%E2%80%A2%20*Email:*%20${email}%0A%E2%80%A2%20*Fecha%20tentativa:*%20${fecha}%0A%E2%80%A2%20*Padecimiento:*%20${mensaje}`;
+                
+                // Link de WhatsApp de la Dra. Carolina Villegas
+                const urlWhatsApp = `https://wa.me/5217225714265?text=${textoWhatsApp}`;
+                
+                // Mostrar mensaje de éxito
+                if (formResponseAlert) {
+                    formResponseAlert.className = 'form-alert success';
+                    formResponseAlert.innerHTML = `
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>¡Datos procesados! Redirigiéndote a WhatsApp para agendar tu cita...</span>
+                    `;
+                    formResponseAlert.hidden = false;
+                }
+                
+                // Limpiar formulario
+                bookingForm.reset();
+                
+                // Redirigir a WhatsApp en pestaña nueva después de 1.8 segundos
+                setTimeout(() => {
+                    window.open(urlWhatsApp, '_blank');
+                    if (formResponseAlert) formResponseAlert.hidden = true;
+                }, 1800);
+                
+            }, 1500); // 1.5 segundos de retraso realista
+        });
+    }
 
 
     // ==========================================================================
