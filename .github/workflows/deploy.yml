@@ -58,7 +58,7 @@ jobs:
           printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -p "$SSH_PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           # El token va por STDIN (no por argumentos) y caduca al terminar el job.
-          printf '%s\n' "$GHCR_TOKEN" | ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" \
+          printf '%s\n' "$GHCR_TOKEN" | ssh -v -i ~/.ssh/deploy_key -p "$SSH_PORT" \
             -o ConnectTimeout=30 \
             -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
             "$SSH_USER@$SSH_HOST" "${APP}-deploy ${{ github.sha }} ${{ github.actor }}"
