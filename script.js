@@ -417,18 +417,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 8.2 Conversiones de Llamadas Telefónicas (Dispara 'click_tel' y apoya Dynamic Number Replacement)
+    // 8.2 Conversiones de Llamadas Telefónicas (Google Ads: AW-945832950/ga-ZCPvr7OcYEPaHgcMD y GA4: click_tel)
     const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
     phoneLinks.forEach(link => {
         link.addEventListener('click', function() {
+            const rawText = this.innerText.replace(/\s+/g, ' ').trim() || '722 571 4265';
+            const locationContext = this.closest('header, aside, .contact-section, footer')?.tagName.toLowerCase() || 'general';
+            
+            // 1. Evento GA4 / GTM: click_tel (para informes y triggers de llamada en GTM)
             sendDataLayerEvent({
                 event: 'click_tel',
                 event_category: 'Phone',
                 event_action: 'Click to Call',
-                event_label: this.innerText.trim() || this.href
+                event_label: rawText + ' (' + locationContext + ')',
+                phone_number: '722 571 4265',
+                send_to: 'AW-945832950/ga-ZCPvr7OcYEPaHgcMD'
             });
+
+            // 2. Evento nativo de conversión Google Ads para la etiqueta de llamada
+            sendDataLayerEvent({
+                event: 'conversion',
+                send_to: 'AW-945832950/ga-ZCPvr7OcYEPaHgcMD',
+                value: 1.0,
+                currency: 'MXN'
+            });
+
+            // 3. Fallback directo si gtag está inicializado en la ventana
+            if (typeof window.gtag === 'function') {
+                window.gtag('event', 'conversion', {
+                    'send_to': 'AW-945832950/ga-ZCPvr7OcYEPaHgcMD',
+                    'value': 1.0,
+                    'currency': 'MXN'
+                });
+            }
         });
     });
+
+    // Helper global estándar de Google Ads para conversiones de llamada desde la web
+    window.gtag_report_conversion = function(url) {
+        sendDataLayerEvent({
+            event: 'conversion',
+            send_to: 'AW-945832950/ga-ZCPvr7OcYEPaHgcMD',
+            value: 1.0,
+            currency: 'MXN'
+        });
+        if (typeof window.gtag === 'function') {
+            window.gtag('event', 'conversion', {
+                'send_to': 'AW-945832950/ga-ZCPvr7OcYEPaHgcMD',
+                'value': 1.0,
+                'currency': 'MXN'
+            });
+        }
+        return true;
+    };
 
     // 8.3 Manejo de Formulario de Contacto (si se utiliza en algún componente)
     const bookingForm = document.getElementById('booking-form');
