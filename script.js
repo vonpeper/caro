@@ -340,8 +340,62 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => sectionObserver.observe(section));
 
     // ==========================================================================
-    // 8. CONTACT FORM VALIDATION & WHATSAPP REDIRECTION
+    // 8. GOOGLE ADS & CONVERSION TRACKING COMPATIBILITY LAYER
     // ==========================================================================
+    // Integración nativa con GTM-TKCJHBK, Google Ads (AW-945832950) y GA4 (G-TTT2FSXSK5)
+    
+    function sendDataLayerEvent(eventPayload) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(eventPayload);
+    }
+
+    // 8.1 Conversiones de WhatsApp (Dispara 'JoinChat' -> AW-945832950/K94TCLLU6-cYEPaHgcMD)
+    const whatsappLinks = document.querySelectorAll(
+        '.whatsapp-floating, .mobile-drawer-whatsapp, a[href*="wa.me"], a[href*="whatsapp.com"]'
+    );
+    
+    whatsappLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const isContactSection = this.closest('#contact') !== null;
+            const btnText = this.getAttribute('aria-label') || this.innerText.replace(/\s+/g, ' ').trim() || 'WhatsApp CTA';
+            
+            // Evento primario: JoinChat para registrar la conversión de WhatsApp en Google Ads
+            sendDataLayerEvent({
+                event: 'JoinChat',
+                event_category: 'JoinChat',
+                event_action: 'Click: ' + btnText,
+                event_label: window.location.href,
+                chat_channel: 'whatsapp'
+            });
+
+            // Si el clic proviene del botón del panel de contacto (que sustituyó al formulario CF7),
+            // también enviamos 'wpcf7-form' para asegurar que las campañas que optimizan
+            // por envíos de formulario (AW-945832950/GNH5CLvm6-cYEPaHgcMD) mantengan la atribución
+            if (isContactSection) {
+                sendDataLayerEvent({
+                    event: 'wpcf7-form',
+                    event_category: 'Contact',
+                    event_action: 'Submit',
+                    event_label: 'WhatsApp Contact Panel'
+                });
+            }
+        });
+    });
+
+    // 8.2 Conversiones de Llamadas Telefónicas (Dispara 'click_tel' y apoya Dynamic Number Replacement)
+    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+    phoneLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            sendDataLayerEvent({
+                event: 'click_tel',
+                event_category: 'Phone',
+                event_action: 'Click to Call',
+                event_label: this.innerText.trim() || this.href
+            });
+        });
+    });
+
+    // 8.3 Manejo de Formulario de Contacto (si se utiliza en algún componente)
     const bookingForm = document.getElementById('booking-form');
     const btnSubmit = document.getElementById('btn-submit-form');
     const formResponseAlert = document.getElementById('form-response-alert');
@@ -352,28 +406,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function validatePhone(phone) {
-        // Validación básica mexicana (10 dígitos numéricos)
         const re = /^\d{10}$/;
         return re.test(phone.replace(/\s+/g, '').replace(/[-()]/g, ''));
     }
     
-    function showInputError(inputEl, errorElId) {
+    function showInputError(inputEl) {
         const group = inputEl.closest('.form-group');
-        group.classList.add('invalid');
+        if (group) group.classList.add('invalid');
     }
     
     function clearInputError(inputEl) {
         const group = inputEl.closest('.form-group');
-        group.classList.remove('invalid');
+        if (group) group.classList.remove('invalid');
     }
     
     if (bookingForm) {
-        // Limpieza de estados de error al escribir
         const inputs = bookingForm.querySelectorAll('.form-control');
         inputs.forEach(input => {
-            input.addEventListener('input', () => {
-                clearInputError(input);
-            });
+            input.addEventListener('input', () => clearInputError(input));
         });
         
         bookingForm.addEventListener('submit', (e) => {
@@ -386,62 +436,58 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageInput = document.getElementById('form-message');
             
             let isValid = true;
-            
-            // Validar nombre
-            if (nameInput.value.trim().length < 3) {
+            if (nameInput && nameInput.value.trim().length < 3) {
                 showInputError(nameInput);
                 isValid = false;
-            } else {
+            } else if (nameInput) {
                 clearInputError(nameInput);
             }
             
-            // Validar teléfono
-            if (!validatePhone(phoneInput.value)) {
+            if (phoneInput && !validatePhone(phoneInput.value)) {
                 showInputError(phoneInput);
                 isValid = false;
-            } else {
+            } else if (phoneInput) {
                 clearInputError(phoneInput);
             }
             
-            // Validar correo
-            if (!validateEmail(emailInput.value)) {
+            if (emailInput && !validateEmail(emailInput.value)) {
                 showInputError(emailInput);
                 isValid = false;
-            } else {
+            } else if (emailInput) {
                 clearInputError(emailInput);
             }
             
-            if (!isValid) {
-                return; // Detener flujo si hay errores
-            }
+            if (!isValid) return;
             
-            // Estado de carga premium
             if (btnSubmit) {
                 btnSubmit.classList.add('loading');
                 btnSubmit.disabled = true;
             }
             
-            // Simulación de envío por API
             setTimeout(() => {
                 if (btnSubmit) {
                     btnSubmit.classList.remove('loading');
                     btnSubmit.disabled = false;
                 }
                 
-                // Construir el mensaje formateado para WhatsApp
-                const nombre = encodeURIComponent(nameInput.value.trim());
-                const telefono = encodeURIComponent(phoneInput.value.trim());
-                const email = encodeURIComponent(emailInput.value.trim());
-                const fecha = encodeURIComponent(dateInput.value ? dateInput.value : 'No especificada');
-                const mensajeOriginal = messageInput.value.trim();
-                const mensaje = encodeURIComponent(mensajeOriginal ? mensajeOriginal : 'Ninguno');
+                const nombre = nameInput ? encodeURIComponent(nameInput.value.trim()) : '';
+                const telefono = phoneInput ? encodeURIComponent(phoneInput.value.trim()) : '';
+                const email = emailInput ? encodeURIComponent(emailInput.value.trim()) : '';
+                const fecha = dateInput && dateInput.value ? encodeURIComponent(dateInput.value) : 'No especificada';
+                const mensajeOriginal = messageInput ? messageInput.value.trim() : '';
+                const mensaje = encodeURIComponent(mensajeOriginal || 'Ninguno');
+                
+                // Disparar evento de conversión de formulario en dataLayer
+                sendDataLayerEvent({
+                    event: 'wpcf7-form',
+                    event_category: 'Contact Form',
+                    event_action: 'Submit',
+                    event_label: 'Formulario Web'
+                });
                 
                 const textoWhatsApp = `Hola,%20quisiera%20agendar%20una%20cita%20con%20la%20Dra.%20Carolina%20Villegas.%0A%0A*Mis%20Datos:*%0A%E2%80%A2%20*Nombre:*%20${nombre}%0A%E2%80%A2%20*Tel%C3%A9fono:*%20${telefono}%0A%E2%80%A2%20*Email:*%20${email}%0A%E2%80%A2%20*Fecha%20tentativa:*%20${fecha}%0A%E2%80%A2%20*Padecimiento:*%20${mensaje}`;
-                
-                // Link de WhatsApp de la Dra. Carolina Villegas
                 const urlWhatsApp = `https://wa.me/5217225714265?text=${textoWhatsApp}`;
                 
-                // Mostrar mensaje de éxito
                 if (formResponseAlert) {
                     formResponseAlert.className = 'form-alert success';
                     formResponseAlert.innerHTML = `
@@ -451,16 +497,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     formResponseAlert.hidden = false;
                 }
                 
-                // Limpiar formulario
                 bookingForm.reset();
-                
-                // Redirigir a WhatsApp en pestaña nueva después de 1.8 segundos
                 setTimeout(() => {
                     window.open(urlWhatsApp, '_blank');
                     if (formResponseAlert) formResponseAlert.hidden = true;
                 }, 1800);
-                
-            }, 1500); // 1.5 segundos de retraso realista
+            }, 1500);
         });
     }
 
