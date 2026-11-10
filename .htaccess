@@ -24,7 +24,7 @@
     
     # Content Security Policy (CSP) seguro para proteger contra XSS e inyecciones de scripts
     # Permite 'self', Google Fonts, Google Tag Manager y Google Analytics.
-    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net; frame-src 'self' https://www.googletagmanager.com; base-uri 'none'; form-action 'self';"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google.com https://*.googleapis.com https://*.gstatic.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net; frame-src 'self' https://www.googletagmanager.com https://www.google.com https://maps.google.com; base-uri 'none'; form-action 'self';"
 </IfModule>
 
 # Configuración de compresión Gzip para mejorar el rendimiento y velocidad

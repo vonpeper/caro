@@ -2064,6 +2064,82 @@ h1, h2, h3, h4, h5, h6 {
     color: #991b1b;
 }
 
+/* Contact Map Interactive Card */
+.contact-map-card {
+    margin-top: 56px;
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: var(--border-glass);
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.contact-map-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 36px;
+    background-color: var(--bg-soft);
+    border-bottom: var(--border-light);
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.contact-map-header-text {
+    flex: 1;
+    min-width: 260px;
+}
+
+.contact-map-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+    background-color: rgba(13, 173, 185, 0.1);
+    padding: 4px 12px;
+    border-radius: var(--border-radius-full);
+    margin-bottom: 8px;
+}
+
+.contact-map-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark-navy);
+    margin-bottom: 4px;
+}
+
+.contact-map-subtitle {
+    font-size: 0.875rem;
+    color: var(--slate-600);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.contact-map-header-action {
+    flex-shrink: 0;
+}
+
+.contact-map-iframe-container {
+    width: 100%;
+    height: 420px;
+    position: relative;
+    background-color: #f1f5f9;
+}
+
+.contact-map-iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+}
+
 /* ==========================================================================
    FOOTER PREMIUM
    ========================================================================== */
@@ -2147,33 +2223,31 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     border: var(--border-light);
     box-shadow: var(--shadow-sm);
+    background-color: #f1f5f9;
 }
 
-.footer-map-link {
+.footer-map-container iframe {
+    width: 100%;
+    height: 100%;
     display: block;
-    width: 100%;
-    height: 100%;
+    border: 0;
 }
 
-.map-placeholder {
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(13, 173, 185, 0.05) 0%, rgba(226, 232, 240, 0.4) 100%);
-    display: flex;
-    flex-direction: column;
+.footer-map-link-btn {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
-    color: var(--slate-600);
-    font-family: var(--font-heading);
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 0.8125rem;
     font-weight: 600;
-    font-size: 0.875rem;
-    transition: background-color var(--transition-fast);
+    color: var(--primary);
+    text-decoration: none;
+    transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
-.footer-map-link:hover .map-placeholder {
-    background-color: rgba(13, 173, 185, 0.1);
-    color: var(--primary);
+.footer-map-link-btn:hover {
+    color: var(--primary-dark);
+    transform: translateX(3px);
 }
 
 .footer-bottom {
@@ -2834,6 +2908,30 @@ h1, h2, h3, h4, h5, h6 {
     
     .contact-form-panel {
         padding: 32px 24px;
+    }
+
+    .contact-map-card {
+        margin-top: 36px;
+    }
+    
+    .contact-map-header {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .contact-map-header-action {
+        width: 100%;
+    }
+    
+    .contact-map-header-action .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .contact-map-iframe-container {
+        height: 320px;
     }
     
     .roadmap-timeline {
