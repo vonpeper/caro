@@ -63,6 +63,7 @@ html {
     font-size: 16px;
     -webkit-text-size-adjust: 100%;
     overflow-x: hidden;
+    max-width: 100%;
 }
 
 body {
@@ -74,6 +75,24 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+}
+
+main {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+p, h1, h2, h3, h4, h5, h6, a, span, li, blockquote {
+    overflow-wrap: break-word;
+}
+
+a[href^="mailto:"], a[href^="tel:"], .c-method-value, .footer-contact-link, .address-link {
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 img {
@@ -165,13 +184,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-title {
-    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-size: clamp(1.45rem, 3.8vw, 2.75rem);
+    line-height: 1.25;
     margin-bottom: 20px;
+    text-wrap: balance;
 }
 
 .section-description {
-    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    font-size: clamp(0.9375rem, 2vw, 1.125rem);
     color: var(--slate-600);
+    line-height: 1.6;
 }
 
 /* ==========================================================================
@@ -493,13 +515,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-title {
-    font-size: clamp(2.75rem, 6vw, 4.5rem);
-    line-height: 1.15;
+    font-size: clamp(1.85rem, 5.2vw, 4.25rem);
+    line-height: 1.18;
     margin-bottom: 24px;
+    text-wrap: balance;
 }
 
 .hero-subtitle {
-    font-size: clamp(1.125rem, 2.5vw, 1.35rem);
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
     color: var(--slate-600);
     margin-bottom: 40px;
     max-width: 680px;
@@ -1390,11 +1413,15 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .visual-container {
     position: relative;
     width: 380px;
+    max-width: 100%;
     height: 380px;
 }
 
@@ -1856,6 +1883,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: flex-start;
     gap: 20px;
+    min-width: 0;
 }
 
 .c-method-icon {
@@ -1869,6 +1897,11 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     flex-shrink: 0;
     border: var(--border-light);
+}
+
+.c-method-text {
+    min-width: 0;
+    flex: 1;
 }
 
 .c-method-label {
@@ -1886,6 +1919,9 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     font-size: 1.125rem;
     color: var(--dark-navy);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    display: inline-block;
 }
 
 .c-method-value:hover {
@@ -1897,12 +1933,16 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     font-size: 0.9375rem;
     color: var(--slate-600);
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .address-link {
     font-weight: 400;
     font-size: 0.9375rem;
     line-height: 1.5;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 /* Form Styles */
@@ -2612,25 +2652,51 @@ h1, h2, h3, h4, h5, h6 {
         --header-height: 70px;
     }
     
+    .container {
+        padding: 0 16px;
+    }
+    
+    .section-padding {
+        padding: clamp(2.75rem, 6vw, 4.5rem) 0;
+    }
+
+    .hero-title {
+        font-size: clamp(1.75rem, 6.2vw, 2.5rem);
+        line-height: 1.2;
+    }
+    
+    .section-title {
+        font-size: clamp(1.35rem, 4.8vw, 1.85rem);
+        line-height: 1.25;
+    }
+    
+    .section-description {
+        font-size: 0.95rem;
+    }
+    
+    .brand-text {
+        font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+    }
+    
     .header {
-        top: 12px;
-        left: 12px;
-        right: 12px;
+        top: 10px;
+        left: 10px;
+        right: 10px;
         width: auto;
         transform: none;
     }
     
     .header.scrolled {
-        top: 8px;
+        top: 6px;
     }
     
     .header-container {
-        height: 60px;
-        padding: 0 16px;
+        height: 56px;
+        padding: 0 14px;
     }
     
     .header.scrolled .header-container {
-        height: 54px;
+        height: 50px;
     }
 
     /* Ocultar menú de escritorio en móviles */
@@ -2854,10 +2920,25 @@ h1, h2, h3, h4, h5, h6 {
     
     .hero-actions {
         justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+    
+    .hero-actions .btn {
+        width: 100%;
     }
     
     .hero-floating-badges {
         justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+    
+    .floating-badge {
+        width: 100%;
+        padding: 12px 16px;
     }
     
     .bento-card-horizontal {
@@ -2888,7 +2969,7 @@ h1, h2, h3, h4, h5, h6 {
     
     .bento-horizontal-text {
         width: 100%;
-        padding: 24px;
+        padding: 20px 16px;
     }
     
     .bento-horizontal-text .bento-title {
@@ -2896,29 +2977,177 @@ h1, h2, h3, h4, h5, h6 {
         margin-bottom: 8px;
     }
     
+    /* Coverflow 3D móvil contenido */
+    .coverflow-wrapper {
+        padding: 15px 0 5px;
+        overflow: hidden;
+        overflow-x: clip;
+        contain: paint;
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .coverflow-stage {
+        height: 310px;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    
+    .coverflow-slide {
+        width: min(290px, 80vw);
+        max-width: 320px;
+        height: 230px;
+    }
+    
+    .coverflow-slide.is-prev {
+        transform: translate3d(-24%, 0, -70px) rotateY(14deg) scale(0.86);
+    }
+    
+    .coverflow-slide.is-next {
+        transform: translate3d(24%, 0, -70px) rotateY(-14deg) scale(0.86);
+    }
+
+    /* Metodología adaptada a móviles */
+    .why-us-visual {
+        order: -1;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+    }
+    
+    .visual-container {
+        width: min(280px, 80vw);
+        height: min(280px, 80vw);
+        transform: none;
+        margin: 0 auto;
+    }
+    
+    .main-circle {
+        width: min(105px, 30vw);
+        height: min(105px, 30vw);
+    }
+    
+    .main-circle span {
+        font-size: 0.75rem;
+    }
+    
+    .main-circle svg {
+        width: 34px;
+        height: 34px;
+    }
+    
+    .visual-node {
+        width: min(65px, 19vw);
+        height: min(65px, 19vw);
+        font-size: 0.65rem;
+    }
+    
+    .visual-node svg {
+        width: 18px;
+        height: 18px;
+        margin-bottom: 2px;
+    }
+    
+    .methodology-card {
+        gap: 14px;
+        margin-top: 20px;
+        align-items: flex-start;
+    }
+    
+    .m-card-number {
+        width: 38px;
+        height: 38px;
+        font-size: 1.05rem;
+    }
+    
+    .m-card-content {
+        min-width: 0;
+        flex: 1;
+    }
+    
+    .m-card-title {
+        font-size: 1.05rem;
+        line-height: 1.3;
+    }
+    
+    .m-card-desc {
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+
     .testimonials-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 20px;
+    }
+
+    .testimonial-card {
+        padding: 24px 18px;
     }
     
     .contact-grid {
         grid-template-columns: 1fr;
-        gap: 48px;
+        gap: 36px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .contact-methods {
+        gap: 18px;
+        margin-top: 22px;
+    }
+    
+    .contact-method-card {
+        gap: 14px;
+        min-width: 0;
+    }
+    
+    .c-method-text {
+        min-width: 0;
+        flex: 1;
+    }
+    
+    .c-method-value,
+    .c-method-value-static {
+        font-size: 0.95rem;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+    
+    .address-link {
+        font-size: 0.875rem;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
     
     .contact-form-panel {
-        padding: 32px 24px;
+        padding: 24px 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .form-panel-title {
+        font-size: 1.35rem;
+        line-height: 1.3;
+    }
+    
+    .form-panel-desc {
+        font-size: 0.9rem;
     }
 
     .contact-map-card {
-        margin-top: 36px;
+        margin-top: 28px;
     }
     
     .contact-map-header {
-        padding: 20px;
+        padding: 16px;
         flex-direction: column;
         align-items: flex-start;
-        gap: 16px;
+        gap: 14px;
     }
     
     .contact-map-header-action {
@@ -2931,11 +3160,11 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .contact-map-iframe-container {
-        height: 320px;
+        height: 280px;
     }
     
     .roadmap-timeline {
-        padding-left: 20px;
+        padding-left: 10px;
     }
     
     .roadmap-progress-bar {
@@ -2943,7 +3172,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .roadmap-step {
-        gap: 20px;
+        gap: 16px;
     }
     
     .step-marker {
@@ -2956,18 +3185,24 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .step-content {
-        padding: 20px;
+        padding: 18px 16px;
+        min-width: 0;
+        flex: 1;
+    }
+    
+    .step-title {
+        font-size: 1.05rem;
+    }
+    
+    .step-desc {
+        font-size: 0.875rem;
     }
 }
 
 @media (max-width: 580px) {
     .stats-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .bento-card-horizontal {
-        /* Mobile specific card overrides */
+        gap: 16px;
     }
     
     .bento-horizontal-img-wrapper {
@@ -2975,32 +3210,37 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .bento-horizontal-text {
-        padding: 20px;
-    }
-    
-    .visual-container {
-        transform: scale(0.78);
-        transform-origin: center center;
-        margin: -35px auto;
+        padding: 18px 14px;
     }
     
     .footer-top {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 28px;
     }
     
     .footer-bottom {
         flex-direction: column;
         text-align: center;
-        gap: 16px;
+        gap: 14px;
     }
     
     .cta-banner-section {
-        margin: 0 16px;
+        margin: 0 10px;
+        padding: clamp(2.5rem, 5vw, 3.5rem) 16px;
+        max-width: calc(100% - 20px);
+        border-radius: var(--border-radius-md);
+    }
+    
+    .cta-backdrop-glow {
+        width: 100%;
+        max-width: 320px;
+        height: 320px;
     }
     
     .cta-actions {
         flex-direction: column;
+        width: 100%;
+        gap: 12px;
     }
     
     .cta-actions .btn {
@@ -3008,19 +3248,27 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .whatsapp-floating {
-        bottom: 24px;
-        right: 24px;
+        bottom: 20px;
+        right: 20px;
     }
     
     .wa-icon-container {
-        width: 50px;
-        height: 50px;
+        width: 48px;
+        height: 48px;
     }
     
     .wa-icon-container img {
         width: 22px;
         height: 22px;
     }
+}
+
+/* ==========================================================================
+   PERFORMANCE & CONTENT VISIBILITY (Modern CWV Optimization)
+   ========================================================================== */
+#why-us, #process, #testimonials, #faq, #contact {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 650px;
 }
 
 /* ==========================================================================

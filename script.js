@@ -95,166 +95,201 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================================================
-    // 3. INTERACTIVE HERO CANVAS (Ondas Biomecánicas Fluidas)
+    // 3. INTERACTIVE HERO CANVAS (Ondas Biomecánicas Fluidas - Optimizado con IntersectionObserver)
     // ==========================================================================
     const canvas = document.getElementById('hero-canvas');
-    const ctx = canvas.getContext('2d');
-    
-    let animationFrameId;
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-    
-    // Adjust canvas dimensions on load without causing layout thrashing
-    // Use requestAnimationFrame to ensure paint has occurred
-    window.addEventListener('load', () => {
-        requestAnimationFrame(() => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        
+        let animationFrameId = null;
+        let isHeroVisible = true;
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        
+        // Adjust canvas dimensions on load without causing layout thrashing
+        window.addEventListener('load', () => {
+            requestAnimationFrame(() => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
         });
-    });
-    
-    // Parámetros de ondas biomecánicas
-    const waves = [
-        {
-            y: height * 0.5,
-            length: 0.003,
-            amplitude: 45,
-            frequency: 0.008,
-            color: 'rgba(13, 173, 185, 0.22)',
-            phase: 0
-        },
-        {
-            y: height * 0.52,
-            length: 0.002,
-            amplitude: 60,
-            frequency: 0.006,
-            color: 'rgba(14, 165, 233, 0.16)',
-            phase: Math.PI / 4
-        },
-        {
-            y: height * 0.48,
-            length: 0.004,
-            amplitude: 30,
-            frequency: 0.01,
-            color: 'rgba(13, 173, 185, 0.12)',
-            phase: Math.PI / 2
-        }
-    ];
-    
-    // Partículas flotando suavemente
-    const particles = [];
-    const particleCount = 28;
-    
-    class Particle {
-        constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.size = Math.random() * 3 + 1.5;
-            this.speedX = Math.random() * 0.3 - 0.15;
-            this.speedY = Math.random() * 0.3 - 0.15;
-            this.opacity = Math.random() * 0.5 + 0.2;
-        }
         
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
+        // Parámetros de ondas biomecánicas
+        const waves = [
+            {
+                y: height * 0.5,
+                length: 0.003,
+                amplitude: 45,
+                frequency: 0.008,
+                color: 'rgba(13, 173, 185, 0.22)',
+                phase: 0
+            },
+            {
+                y: height * 0.52,
+                length: 0.002,
+                amplitude: 60,
+                frequency: 0.006,
+                color: 'rgba(14, 165, 233, 0.16)',
+                phase: Math.PI / 4
+            },
+            {
+                y: height * 0.48,
+                length: 0.004,
+                amplitude: 30,
+                frequency: 0.01,
+                color: 'rgba(13, 173, 185, 0.12)',
+                phase: Math.PI / 2
+            }
+        ];
+        
+        // Partículas flotando suavemente
+        const particles = [];
+        const particleCount = 28;
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 3 + 1.5;
+                this.speedX = Math.random() * 0.3 - 0.15;
+                this.speedY = Math.random() * 0.3 - 0.15;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
             
-            // Rebotar en los bordes
-            if (this.x < 0 || this.x > width) this.speedX *= -1;
-            if (this.y < 0 || this.y > height) this.speedY *= -1;
-        }
-        
-        draw() {
-            ctx.fillStyle = `rgba(13, 173, 185, ${this.opacity})`;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-    
-    // Inicializar partículas
-    for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-    }
-    
-    // Interactividad con el mouse
-    let mouse = { x: null, y: null, radius: 180 };
-    
-    window.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-    });
-    
-    window.addEventListener('mouseleave', () => {
-        mouse.x = null;
-        mouse.y = null;
-    });
-    
-    function animate() {
-        ctx.clearRect(0, 0, width, height);
-        
-        // Dibujar ondas
-        waves.forEach((wave) => {
-            ctx.beginPath();
-            ctx.strokeStyle = wave.color;
-            ctx.lineWidth = 1.5;
-            
-            for (let i = 0; i < width; i += 2) {
-                // Cálculo de la deformación por posición horizontal y tiempo (fase)
-                let yOffset = Math.sin(i * wave.length + wave.phase) * wave.amplitude;
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
                 
-                // Modificación interactiva al acercar el cursor del mouse
-                if (mouse.x !== null) {
-                    let dx = i - mouse.x;
-                    let dy = (wave.y + yOffset) - mouse.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
+                // Rebotar en los bordes
+                if (this.x < 0 || this.x > width) this.speedX *= -1;
+                if (this.y < 0 || this.y > height) this.speedY *= -1;
+            }
+            
+            draw() {
+                ctx.fillStyle = `rgba(13, 173, 185, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        // Inicializar partículas
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        
+        // Interactividad con el mouse
+        let mouse = { x: null, y: null, radius: 180 };
+        
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+        
+        function animate() {
+            if (!isHeroVisible) {
+                animationFrameId = null;
+                return;
+            }
+
+            ctx.clearRect(0, 0, width, height);
+            
+            // Dibujar ondas
+            waves.forEach((wave) => {
+                ctx.beginPath();
+                ctx.strokeStyle = wave.color;
+                ctx.lineWidth = 1.5;
+                
+                for (let i = 0; i < width; i += 2) {
+                    // Cálculo de la deformación por posición horizontal y tiempo (fase)
+                    let yOffset = Math.sin(i * wave.length + wave.phase) * wave.amplitude;
                     
-                    if (distance < mouse.radius) {
-                        // Empujar o jalar suavemente la onda biomecánica para simular tacto/biología
-                        let force = (mouse.radius - distance) / mouse.radius;
-                        yOffset += Math.sin(distance * 0.05 - wave.phase * 2) * 15 * force;
+                    // Modificación interactiva al acercar el cursor del mouse
+                    if (mouse.x !== null) {
+                        let dx = i - mouse.x;
+                        let dy = (wave.y + yOffset) - mouse.y;
+                        let distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < mouse.radius) {
+                            // Empujar o jalar suavemente la onda biomecánica para simular tacto/biología
+                            let force = (mouse.radius - distance) / mouse.radius;
+                            yOffset += Math.sin(distance * 0.05 - wave.phase * 2) * 15 * force;
+                        }
+                    }
+                    
+                    let x = i;
+                    let y = wave.y + yOffset;
+                    
+                    if (i === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
                     }
                 }
                 
-                let x = i;
-                let y = wave.y + yOffset;
-                
-                if (i === 0) {
-                    ctx.moveTo(x, y);
-                } else {
-                    ctx.lineTo(x, y);
-                }
-            }
+                ctx.stroke();
+                wave.phase += wave.frequency; // Actualizar fase para el movimiento fluido continuo
+            });
             
-            ctx.stroke();
-            wave.phase += wave.frequency; // Actualizar fase para el movimiento fluido continuo
-        });
-        
-        // Dibujar y actualizar partículas
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        
-        animationFrameId = requestAnimationFrame(animate);
-    }
-    
-    animate();
-    
-    // Resize handler debounced to avoid layout trashing and forced sync reads
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            width = canvas.width = canvas.offsetWidth || window.innerWidth;
-            height = canvas.height = canvas.offsetHeight || window.innerHeight;
+            // Dibujar y actualizar partículas
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            animationFrameId = requestAnimationFrame(animate);
+        }
 
-            // Update central wave lines proportionally
-            waves[0].y = height * 0.5;
-            waves[1].y = height * 0.52;
-            waves[2].y = height * 0.48;
-        }, 100);
-    });
+        function startHeroAnimation() {
+            if (!animationFrameId && isHeroVisible) {
+                animationFrameId = requestAnimationFrame(animate);
+            }
+        }
+
+        function stopHeroAnimation() {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        }
+
+        const heroSection = document.getElementById('hero') || canvas;
+        if (heroSection && 'IntersectionObserver' in window) {
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    isHeroVisible = entry.isIntersecting;
+                    if (entry.isIntersecting) {
+                        startHeroAnimation();
+                    } else {
+                        stopHeroAnimation();
+                    }
+                });
+            }, { threshold: 0.02 });
+            heroObserver.observe(heroSection);
+        } else {
+            startHeroAnimation();
+        }
+        
+        // Resize handler debounced to avoid layout trashing and forced sync reads
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                width = canvas.width = canvas.offsetWidth || window.innerWidth;
+                height = canvas.height = canvas.offsetHeight || window.innerHeight;
+
+                // Update central wave lines proportionally
+                waves[0].y = height * 0.5;
+                waves[1].y = height * 0.52;
+                waves[2].y = height * 0.48;
+            }, 100);
+        });
+    }
 
     // ==========================================================================
     // 4. SCROLL REVEAL (Intersection Observer para animaciones fluidas)
@@ -509,11 +544,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================================================
     // ==========================================================================
-    // 9. CTA CANVAS: NERVOUS-MUSCULAR CONNECTION ANIMATION (White & Red)
+    // 9. CTA CANVAS: NERVOUS-MUSCULAR CONNECTION ANIMATION (White & Red - Optimizado)
     // ==========================================================================
     const ctaCanvas = document.getElementById('cta-canvas');
     if (ctaCanvas) {
         const ctaCtx = ctaCanvas.getContext('2d');
+        let ctaAnimationId = null;
+        let isCtaVisible = false;
         let ctaWidth = ctaCanvas.width = window.innerWidth;
         let ctaHeight = ctaCanvas.height = 360; // Altura aproximada inicial segura
         
@@ -729,10 +766,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctaCtx.shadowBlur = 0;
             }
 
-            requestAnimationFrame(animateCta);
+            if (isCtaVisible) {
+                ctaAnimationId = requestAnimationFrame(animateCta);
+            } else {
+                ctaAnimationId = null;
+            }
         }
 
-        animateCta();
+        function startCtaAnimation() {
+            if (!ctaAnimationId && isCtaVisible) {
+                ctaAnimationId = requestAnimationFrame(animateCta);
+            }
+        }
+
+        function stopCtaAnimation() {
+            if (ctaAnimationId) {
+                cancelAnimationFrame(ctaAnimationId);
+                ctaAnimationId = null;
+            }
+        }
+
+        const ctaSection = document.getElementById('cta') || ctaCanvas;
+        if (ctaSection && 'IntersectionObserver' in window) {
+            const ctaObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    isCtaVisible = entry.isIntersecting;
+                    if (entry.isIntersecting) {
+                        startCtaAnimation();
+                    } else {
+                        stopCtaAnimation();
+                    }
+                });
+            }, { threshold: 0.02 });
+            ctaObserver.observe(ctaSection);
+        } else {
+            isCtaVisible = true;
+            startCtaAnimation();
+        }
 
         window.addEventListener('resize', () => {
             if (ctaCanvas) {
