@@ -56,13 +56,9 @@ jobs:
           set -euo pipefail
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
           printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
-          echo "==> Escaneando host key en $SSH_HOST:$SSH_PORT..."
-          ssh-keyscan -T 10 -p "$SSH_PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts
-          echo "==> Conectando via SSH para ejecutar ${APP}-deploy..."
+          ssh-keyscan -p "$SSH_PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
           # El token va por STDIN (no por argumentos) y caduca al terminar el job.
           printf '%s\n' "$GHCR_TOKEN" | ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" \
-            -o ConnectTimeout=20 \
-            -o ServerAliveInterval=15 \
-            -o ServerAliveCountMax=4 \
+            -o ConnectTimeout=30 \
             -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
             "$SSH_USER@$SSH_HOST" "${APP}-deploy ${{ github.sha }} ${{ github.actor }}"
