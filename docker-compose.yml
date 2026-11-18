@@ -1,7 +1,0 @@
-# Solo para desarrollo y pruebas locales. El servidor de produccion usa Quadlet (deploy/caro.container).
-services:
-  app:
-    build: .
-    container_name: caro-fisioterapia-local
-    ports:
-      - "8080:80"

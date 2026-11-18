@@ -1,2 +1,6 @@
 .DS_Store
 */.DS_Store
+
+# Paquetes de distribución local para FTP (no versionar en repositorio)
+staging-dist/
+dist/
